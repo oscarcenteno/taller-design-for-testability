@@ -7,7 +7,7 @@ Public Class NoEsAislable
     ' Si la prueba unitaria quiere verificar la logica del calculo, 
     ' podria fallar porque el servidor de email esta fuera de linea.
     ' El servidor SMTP no esta relacionado con el comportamiento por verificar.
-    Public Function Add(x As Integer, y As Integer) As Integer
+    Public Function Sume(x As Integer, y As Integer) As Integer
         Dim suma As Integer = x + y
         Dim resultado As String = String.Format("La respuesta es {0}", suma)
 

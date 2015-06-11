@@ -7,7 +7,7 @@ Public Class PeroEsteSiEsAislable
     ' El metodo del calculo tarda milisegundos en ejecutar.
     ' Las pruebas unitarias siempre deben ser rapidas para dar feedback pronto.
     ' Deben ser repetibles y nunca fallar por componentes externos.
-    Public Function Add(x As Integer, y As Integer) As Integer
+    Public Function Sume(x As Integer, y As Integer) As Integer
         Return x + y
     End Function
 

@@ -1,13 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testable Code", "Testable Code", "{67990E95-53E4-45BF-98B8-CD5122C754FE}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "UnitTests", "UnitTests\UnitTests.vbproj", "{67EC17C0-BE58-47B4-AC86-7FA29D8D801B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basics", "Basics", "{EEDBA1D1-FB14-43DB-AFE3-87231D0D9D45}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Logica", "Logica\Logica.vbproj", "{257F382A-24E3-4F1E-A8BA-D2D1DBCB69F8}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LogicaDeNegocio", "Basics\LogicaDeNegocio\LogicaDeNegocio.vbproj", "{7FA2B5E8-A9F1-4480-ABEF-A42C32A84830}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LogicaDeNegocio.UnitTests", "Basics\LogicaDeNegocio.UnitTests\LogicaDeNegocio.UnitTests.vbproj", "{42991E37-DF7D-4664-8700-20758FBC8440}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Logica", "Testable Code\Logica\Logica.vbproj", "{257F382A-24E3-4F1E-A8BA-D2D1DBCB69F8}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "UnitTests", "Testable Code\UnitTests\UnitTests.vbproj", "{67EC17C0-BE58-47B4-AC86-7FA29D8D801B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,20 +21,30 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{67EC17C0-BE58-47B4-AC86-7FA29D8D801B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{67EC17C0-BE58-47B4-AC86-7FA29D8D801B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{67EC17C0-BE58-47B4-AC86-7FA29D8D801B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{67EC17C0-BE58-47B4-AC86-7FA29D8D801B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FA2B5E8-A9F1-4480-ABEF-A42C32A84830}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FA2B5E8-A9F1-4480-ABEF-A42C32A84830}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FA2B5E8-A9F1-4480-ABEF-A42C32A84830}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FA2B5E8-A9F1-4480-ABEF-A42C32A84830}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42991E37-DF7D-4664-8700-20758FBC8440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42991E37-DF7D-4664-8700-20758FBC8440}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42991E37-DF7D-4664-8700-20758FBC8440}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42991E37-DF7D-4664-8700-20758FBC8440}.Release|Any CPU.Build.0 = Release|Any CPU
 		{257F382A-24E3-4F1E-A8BA-D2D1DBCB69F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{257F382A-24E3-4F1E-A8BA-D2D1DBCB69F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{257F382A-24E3-4F1E-A8BA-D2D1DBCB69F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{257F382A-24E3-4F1E-A8BA-D2D1DBCB69F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67EC17C0-BE58-47B4-AC86-7FA29D8D801B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67EC17C0-BE58-47B4-AC86-7FA29D8D801B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67EC17C0-BE58-47B4-AC86-7FA29D8D801B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67EC17C0-BE58-47B4-AC86-7FA29D8D801B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{67EC17C0-BE58-47B4-AC86-7FA29D8D801B} = {67990E95-53E4-45BF-98B8-CD5122C754FE}
+		{7FA2B5E8-A9F1-4480-ABEF-A42C32A84830} = {EEDBA1D1-FB14-43DB-AFE3-87231D0D9D45}
+		{42991E37-DF7D-4664-8700-20758FBC8440} = {EEDBA1D1-FB14-43DB-AFE3-87231D0D9D45}
 		{257F382A-24E3-4F1E-A8BA-D2D1DBCB69F8} = {67990E95-53E4-45BF-98B8-CD5122C754FE}
+		{67EC17C0-BE58-47B4-AC86-7FA29D8D801B} = {67990E95-53E4-45BF-98B8-CD5122C754FE}
 	EndGlobalSection
 EndGlobal

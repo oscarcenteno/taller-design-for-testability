@@ -80,9 +80,10 @@
     <Import Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="No Testable\AddTests_NoEsAislable.vb" />
-    <Compile Include="No Testable\AddTests_NoEsObservable.vb" />
-    <Compile Include="Testable\AddTests_EsObservableYAislable.vb" />
+    <Compile Include="No Testable\NoEsAislable_FallaServidorDeCorreo.vb" />
+    <Compile Include="No Testable\NoEsObservable_FallaComparacion.vb" />
+    <Compile Include="Testable\PeroEsteSiEsAislable_SumaCorrecta.vb" />
+    <Compile Include="Testable\EsObservable_SumaCorrecta.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

@@ -2,13 +2,13 @@
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 Imports Logica
 
-<TestClass()> Public Class AddTests_EsObservableYAislable
+<TestClass()> Public Class PeroEsteSiEsAislable_SumaCorrecta
 
     <TestMethod()> Public Sub Add_SumaEnteros_RetornaEntero()
 
         Dim esperado = 4
         Dim sut As New EsObservable
-        Dim obtenido = sut.Add(2, 2)
+        Dim obtenido = sut.Sume(2, 2)
         Assert.AreEqual(esperado, obtenido)
 
     End Sub
@@ -17,7 +17,7 @@ Imports Logica
 
         Dim esperado = 4
         Dim sut As New PeroEsteSiEsAislable
-        Dim obtenido = sut.Add(2, 2)
+        Dim obtenido = sut.Sume(2, 2)
         Assert.AreEqual(esperado, obtenido)
 
     End Sub

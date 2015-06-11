@@ -3,13 +3,13 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
 Imports Logica
 Imports System.IO
 
-<TestClass()> Public Class AddTests_NoEsAislable
+<TestClass()> Public Class NoEsAislable_FallaServidorDeCorreo
 
-    <TestMethod()> Public Sub Add_SumaEnteros_RetornaEntero()
+    <TestMethod()> Public Sub Sume_SumaEnteros_RetornaEntero()
 
         Dim esperado = 4
         Dim sut As New NoEsAislable
-        Dim obtenido = sut.Add(2, 2)
+        Dim obtenido = sut.Sume(2, 2)
 
         Assert.AreEqual(esperado, obtenido)
 
