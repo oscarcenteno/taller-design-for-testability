@@ -1,0 +1,49 @@
+﻿<Project DefaultTargets="clean; compile; unit-tests; specs; docs" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<UsingTask AssemblyFile="packages\Pickles.MSBuild.1.0.0\tools\PicklesDoc.Pickles.MSBuild.Tasks.dll" TaskName="Pickles" />
+
+  <Target Name="clean">
+    
+    <RemoveDir Directories="TestResults"/>
+
+  </Target>
+
+  <Target Name="Compile">
+
+    <ItemGroup>
+      <Soluciones Include="**\*.sln"/>
+    </ItemGroup>
+    
+    <MSBuild Projects="@(Soluciones)"/>
+    
+  </Target>
+
+  <Target Name="unit-tests">
+
+    <Exec Command='"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\mstest.exe" /testcontainer:"LogicaDeNegocio.UnitTests\bin\Debug\LogicaDeNegocio.UnitTests.dll" '/>
+
+  </Target>
+
+  <Target Name="specs">
+
+    <Exec Command='"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\mstest.exe" /testcontainer:"especificaciones\bin\Debug\especificaciones.dll" /resultsfile:"TestResults\especificaciones-results.trx"'
+          ContinueOnError='true'/>
+
+  </Target>
+  
+  <Target Name="docs">
+    
+    <RemoveDir Directories="Documentacion" ContinueOnError="true" />
+    <MakeDir Directories="Documentacion" />
+    
+    <Pickles
+      Language="es"
+      FeatureDirectory="especificaciones"
+      OutputDirectory="documentacion"
+      ResultsFormat="mstest"
+      ResultsFile="TestResults\especificaciones-results.trx"
+      SystemUnderTestName="Demo"
+      SystemUnderTestVersion="1.0.0.0"
+      DocumentationFormat="dhtml" />
+  </Target>
+
+</Project>
