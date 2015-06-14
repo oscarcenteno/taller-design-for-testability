@@ -1,48 +1,48 @@
 ﻿Public Class TransaccionDTO
     Implements IEquatable(Of TransaccionDTO)
 
-    Property Estado As EstadoTransaccion
-
-    Property SeHaNotificado As Boolean
-
-    Property FechaDeConfirmacion As Date
-
     Property CodReferencia As String
+    Property Estado As EstadoTransaccion
+    Property FecValor As Date
 
     Property CodEntidadOrigen As String
 
-    Property NumTelefonoPadronMovilDestino As String
+    Property CodEntidadDestino As String
+    Property NumTelefonoDestino As String
+    Property CodMonedaDestino As String
 
-    Property CodMonedaPadronMovilDestino As String
+    Property FecConfirmacion As Date
+    Property SeHaNotificado As Boolean
 
-    Property CodEntidadPadronMovilDestino As String
-
-    Property FecValor As Date
 
     Public Sub New()
         Estado = EstadoTransaccion.Invalido
         SeHaNotificado = False
-        FechaDeConfirmacion = New Date
+        FecConfirmacion = Nothing
         CodReferencia = String.Empty
         CodEntidadOrigen = String.Empty
-        NumTelefonoPadronMovilDestino = String.Empty
-        CodMonedaPadronMovilDestino = String.Empty
-        CodEntidadPadronMovilDestino = String.Empty
+        NumTelefonoDestino = String.Empty
+        CodMonedaDestino = String.Empty
+        CodEntidadDestino = String.Empty
         FecValor = New Date
     End Sub
 
 
     Public Overloads Function Equals(other As TransaccionDTO) As Boolean _
         Implements IEquatable(Of TransaccionDTO).Equals
-        Return Me.Estado.Equals(other.Estado) And _
+        Dim respuesta As Boolean = False
+        respuesta = Me.Estado.Equals(other.Estado) And _
         Me.SeHaNotificado.Equals(other.SeHaNotificado) And _
-        Me.FechaDeConfirmacion.Equals(other.FechaDeConfirmacion) And _
+        Me.FecConfirmacion.Equals(other.FecConfirmacion) And _
         Me.CodReferencia.Equals(other.CodReferencia) And _
         Me.CodEntidadOrigen.Equals(other.CodEntidadOrigen) And _
-        Me.NumTelefonoPadronMovilDestino.Equals(other.NumTelefonoPadronMovilDestino) And _
-        Me.CodMonedaPadronMovilDestino.Equals(other.CodMonedaPadronMovilDestino) And _
+        Me.NumTelefonoDestino.Equals(other.NumTelefonoDestino) And _
+        Me.CodMonedaDestino.Equals(other.CodMonedaDestino) And _
         Me.FecValor.Equals(other.FecValor) And _
-        Me.CodEntidadPadronMovilDestino.Equals(other.CodEntidadPadronMovilDestino)
+        Me.CodEntidadDestino.Equals(other.CodEntidadDestino)
+
+        Console.WriteLine("HolamUnod")
+        Return respuesta
     End Function
 
     Public Overrides Function Equals(obj As Object) As Boolean

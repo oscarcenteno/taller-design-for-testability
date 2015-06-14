@@ -2,66 +2,74 @@
 
 Public Class App
 
-    Private _laBitacora As IBitacora
-    Private _repParametros As IRepositorioDeParametros
-    Private _repTransacciones As IRepositorioDeTransacciones
+    Private _laBitacora As IBitacoraAlConfirmar
+    Private _elRepositorio As IRepositorioAlConfirmar
     Private _elInvocadorDeEntidad As IInvocadorAlConfirmar
-    Private _elCalendarizador As ICalendarizador
+    Private _elCalendarizador As ICalendarizadorAlConfirmar
 
-    Public Sub New(laBitacora As IBitacora, repParametros As IRepositorioDeParametros,
-                  repTransacciones As IRepositorioDeTransacciones,
+    Public Sub New(laBitacora As IBitacoraAlConfirmar,
+                   elRepositorio As IRepositorioAlConfirmar,
                   elInvocadorDeEntidad As IInvocadorAlConfirmar,
-                  elCalendarizador As ICalendarizador
+                  elCalendarizador As ICalendarizadorAlConfirmar
                   )
         _laBitacora = laBitacora
-        _repParametros = repParametros
-        _repTransacciones = repTransacciones
+        _elRepositorio = elRepositorio
         _elInvocadorDeEntidad = elInvocadorDeEntidad
         _elCalendarizador = elCalendarizador
     End Sub
 
-    Public Sub Confirmar(codReferencia As String, intentos As Integer)
-        Dim datosDeTransaccion As TransaccionDTO = _repTransacciones.Obtener(codReferencia)
-        Dim respuesta = Confirmar(datosDeTransaccion, datosDeTransaccion.FecValor)
+
+    ' HACK: el codigo original no recibe la fecha, lo que no lo hace testable por el Date.Now que genera internamente
+    Public Sub Confirmar(codReferencia As String, intentos As Integer, fecha As Date)
+        Dim datosDeTransaccion As TransaccionDTO = _elRepositorio.ObtenerTransaccion(codReferencia)
+        Dim respuesta = Confirmar(datosDeTransaccion, fecha)
         If respuesta.AlInvocarEntidad.ComunicacionFueFallida Then
             IntentarCalendarizar(Date.Now, datosDeTransaccion, intentos)
         End If
     End Sub
 
-    Public Function Confirmar(datosDeTransaccion As TransaccionDTO, fecha As Date) As RespuestaAlConfirmar
+    Public Function Confirmar(datosDeTransaccion As TransaccionDTO, fechaYHoraActual As Date) As RespuestaAlConfirmar
         Dim respuesta As New RespuestaAlConfirmar
-        Dim parametros = _repParametros.ObtenerParametrosParaConfirmar()
+        Dim parametros = _elRepositorio.ObtenerParametrosParaConfirmar(datosDeTransaccion)
 
         ' Reglas del negocio
         Dim logica As New LogicaDeNegocio.ProcesoAlConfirmar()
-        Dim respuestaAlValidarConfirmacion = logica.ValidarConfirmacion(parametros, datosDeTransaccion, fecha)
+        Dim respuestaValidar = logica.ValidarProceso(parametros, datosDeTransaccion, fechaYHoraActual)
 
         ' Infraestructura
-        Dim laRespuestaAlInvocarEntidad = New RespuestaAlInvocarEntidad
-        If respuestaAlValidarConfirmacion.ProcesoPuedeEjecutarse Then
-            laRespuestaAlInvocarEntidad = _elInvocadorDeEntidad.Confirmar(respuestaAlValidarConfirmacion.DatosTransaccionConfirmada, parametros, fecha)
-            _repTransacciones.Actualizar(respuestaAlValidarConfirmacion.DatosTransaccionConfirmada)
-            _laBitacora.Escribir(respuestaAlValidarConfirmacion.MensajeTransaccionConfirmada)
+        Dim transaccionConfirmada = respuestaValidar.DatosDeTransaccionConfirmada
+        Dim mensajeDeConfirmacion = respuestaValidar.MensajeDeTransaccionFueConfirmada
+        Dim sePuedeConfirmar = respuestaValidar.SePuedeConfirmar
+        Dim erroresEncontrados = respuestaValidar.Errores
+
+        If sePuedeConfirmar Then
+            respuesta.AlInvocarEntidad = _elInvocadorDeEntidad.Confirmar(respuestaValidar.LaInstruccionDeConfirmacion)
+            _elRepositorio.ActualizarTransaccionConfirmada(transaccionConfirmada)
+            _laBitacora.EscribirTransaccionConfirmada(mensajeDeConfirmacion)
         Else
-            _laBitacora.Escribir(respuestaAlValidarConfirmacion.Errores)
+            ' HACK Se comunica errores por medio de objetos
+            _laBitacora.EscribirErrores(erroresEncontrados)
         End If
 
-        respuesta.AlValidarConfirmacion = respuestaAlValidarConfirmacion
-        respuesta.AlInvocarEntidad = laRespuestaAlInvocarEntidad
+        respuesta.AlValidarConfirmacion = respuestaValidar
+
         Return respuesta
 
     End Function
 
 
-    Public Sub IntentarCalendarizar(fecha As Date, datosDeTransaccion As TransaccionDTO, intentos As Integer)
+    Public Sub IntentarCalendarizar(fechaYHoraActual As Date, datosDeTransaccion As TransaccionDTO, intentosYaRealizados As Integer)
         Dim logica As New LogicaDeNegocio.ProcesoAlConfirmar()
 
-        Dim parametrosParaRecalendarizar As ParametrosAlRecalendarizar = _repParametros.ObtenerParametrosParaRecalendarizar()
-        Dim laRespuestaAlValidarRecalendarizacion = logica.ValidarRecalendarizacion(fecha, datosDeTransaccion, parametrosParaRecalendarizar, intentos)
+        Dim parametrosParaRecalendarizar = _elRepositorio.ObtenerParametrosParaRecalendarizar()
+        Dim laRespuesta = logica.ValidarRecalendarizacion(fechaYHoraActual, datosDeTransaccion, parametrosParaRecalendarizar, intentosYaRealizados)
 
-        If laRespuestaAlValidarRecalendarizacion.SePuedeReintentarLaConfirmacion Then
-            _elCalendarizador.ReCalendarizarConfirmacion(laRespuestaAlValidarRecalendarizacion.LaInstruccionParaRecalendarizar)
-            _laBitacora.Escribir(laRespuestaAlValidarRecalendarizacion.MensajeABitacoraTransaccionFueRecalendarizada)
+        Dim mensaje = laRespuesta.MensajeABitacoraTransaccionFueRecalendarizada
+        Dim instruccion = laRespuesta.LaInstruccionParaRecalendarizar
+
+        If laRespuesta.SePuedeReintentar Then
+            _elCalendarizador.Recalendarizar(instruccion)
+            _laBitacora.EscribirTransaccionFueRecalendarizada(mensaje)
         End If
 
     End Sub

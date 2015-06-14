@@ -8,7 +8,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
     'datos de pruebas
     Private fecha As New Date(2015, 6, 1)
     Private datosDeTransaccionSePuedeConfirmar As New TransaccionDTO With {.CodReferencia = "CodReferenciaPrueba", .Estado = EstadoTransaccion.Autorizada, .SeHaNotificado = False}
-    Private datosDeTransaccionConfirmada As New TransaccionDTO With {.CodReferencia = "CodReferenciaPrueba", .Estado = EstadoTransaccion.Autorizada, .SeHaNotificado = True, .FechaDeConfirmacion = fecha}
+    Private datosDeTransaccionConfirmada As New TransaccionDTO With {.CodReferencia = "CodReferenciaPrueba", .Estado = EstadoTransaccion.Autorizada, .SeHaNotificado = True, .FecConfirmacion = fecha}
     Private datosDeTransaccionNoSePuedeConfirmar As New TransaccionDTO With {.CodReferencia = "CodReferenciaPrueba", .Estado = EstadoTransaccion.EnProceso, .SeHaNotificado = False}
     Private parametrosValidos As New ParametrosAlConfirmar(datosDeTransaccionSePuedeConfirmar, "http://destino", 300, "CN")
     Private parametrosInvalidos As New ParametrosAlConfirmar(datosDeTransaccionSePuedeConfirmar, "http://destino", 300, String.Empty)
@@ -16,15 +16,15 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
     <TestMethod()> Public Sub ValidarProceso_NoHayErrores_RespuestaCompletaParaProcesar()
         'expectativas
         Dim respuestaEsperada As New RespuestaAlValidarProceso
-        respuestaEsperada.ProcesoPuedeEjecutarse = True
-        respuestaEsperada.MensajeTransaccionConfirmada = _
+        respuestaEsperada.SePuedeConfirmar = True
+        respuestaEsperada.MensajeDeTransaccionFueConfirmada = _
             New InformativoTransaccionFueConfirmada(datosDeTransaccionSePuedeConfirmar)
-        respuestaEsperada.laInstruccionDeConfirmacion = _
+        respuestaEsperada.LaInstruccionDeConfirmacion = _
             New InstruccionDeConfirmacion(datosDeTransaccionSePuedeConfirmar, parametrosValidos, fecha)
-        respuestaEsperada.DatosTransaccionConfirmada = datosDeTransaccionConfirmada
+        respuestaEsperada.DatosDeTransaccionConfirmada = datosDeTransaccionConfirmada
 
         'sut
-        Dim respuestaObtenida = sut.ValidarConfirmacion(parametrosValidos, datosDeTransaccionSePuedeConfirmar, fecha)
+        Dim respuestaObtenida = sut.ValidarProceso(parametrosValidos, datosDeTransaccionSePuedeConfirmar, fecha)
 
         'verificacion
         Assert.AreEqual(respuestaEsperada, respuestaObtenida)
@@ -33,11 +33,11 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
     <TestMethod()> Public Sub ValidarProceso_ErroresDeNegocio_RespuestaNegativaConErrores()
         'expectativas
         Dim respuestaEsperada As New RespuestaAlValidarProceso
-        respuestaEsperada.ProcesoPuedeEjecutarse = False
+        respuestaEsperada.SePuedeConfirmar = False
         respuestaEsperada.Errores.Add(New ErrorTransaccionNoEstaAutorizada(datosDeTransaccionNoSePuedeConfirmar))
 
         'sut
-        Dim respuestaObtenida = sut.ValidarConfirmacion(parametrosValidos, datosDeTransaccionNoSePuedeConfirmar, fecha)
+        Dim respuestaObtenida = sut.ValidarProceso(parametrosValidos, datosDeTransaccionNoSePuedeConfirmar, fecha)
 
         'verificacion
         Assert.AreEqual(respuestaEsperada, respuestaObtenida)
@@ -46,12 +46,12 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
     <TestMethod()> Public Sub ValidarProceso_ErroresDeParametros_RespuestaNegativaConErrores()
         'expectativas
         Dim respuestaEsperada As New RespuestaAlValidarProceso
-        respuestaEsperada.ProcesoPuedeEjecutarse = False
+        respuestaEsperada.SePuedeConfirmar = False
         respuestaEsperada.Errores.Add( _
             New ErrorNoSePuedeInvocarAEntidadPorParametrosInvalidos(datosDeTransaccionSePuedeConfirmar.CodReferencia, _
-                                                                    datosDeTransaccionSePuedeConfirmar.CodEntidadPadronMovilDestino))
+                                                                    datosDeTransaccionSePuedeConfirmar.CodEntidadDestino))
         'sut
-        Dim respuestaObtenida = sut.ValidarConfirmacion(parametrosInValidos, datosDeTransaccionNoSePuedeConfirmar, fecha)
+        Dim respuestaObtenida = sut.ValidarProceso(parametrosInValidos, datosDeTransaccionNoSePuedeConfirmar, fecha)
 
         'verificacion
         Assert.AreEqual(respuestaEsperada, respuestaObtenida)
@@ -69,7 +69,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Dim respuestaEsperada = sut.ValidarRecalendarizacion(fecha, datosDeTransaccionSePuedeConfirmar, parametrosParaRecalendarizar, intentosRealizados)
 
         'verificacion
-        Assert.AreEqual(esperado, respuestaEsperada.SePuedeReintentarLaConfirmacion)
+        Assert.AreEqual(esperado, respuestaEsperada.SePuedeReintentar)
 
     End Sub
 
@@ -84,7 +84,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         Dim fechaInicioEsperada As New Date(2015, 6, 1, 12, 5, 0)
         Dim intentosEsperadosParaCalendarizador = 3
         Dim respuestaEsperada As New RespuestaAlValidarRecalendarizacion
-        respuestaEsperada.SePuedeReintentarLaConfirmacion = True
+        respuestaEsperada.SePuedeReintentar = True
         respuestaEsperada.LaInstruccionParaRecalendarizar = New InstruccionParaRecalendarizar _
             With {.FechaInicio = fechaInicioEsperada, _
                   .Intentos = intentosEsperadosParaCalendarizador, _

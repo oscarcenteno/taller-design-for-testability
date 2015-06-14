@@ -98,6 +98,16 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LogicaDeAplicacion\LogicaDeAplicacion.vbproj">
+      <Project>{84bd8cdd-b256-40ca-801b-cd95186cb995}</Project>
+      <Name>LogicaDeAplicacion</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogicaDeNegocio\LogicaDeNegocio.vbproj">
+      <Project>{c48f62e1-358d-46b2-9e5a-5af22eafa4e4}</Project>
+      <Name>LogicaDeNegocio</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

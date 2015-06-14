@@ -2,7 +2,7 @@
 Public Class RespuestaAlValidarRecalendarizacion
     Implements IEquatable(Of RespuestaAlValidarRecalendarizacion)
 
-    Property SePuedeReintentarLaConfirmacion As Boolean
+    Property SePuedeReintentar As Boolean
     Property LaInstruccionParaRecalendarizar As InstruccionParaRecalendarizar
     Property MensajeABitacoraTransaccionFueRecalendarizada As InformativoTransaccionFueRecalendarizada
 
@@ -12,7 +12,7 @@ As Boolean Implements IEquatable(Of RespuestaAlValidarRecalendarizacion).Equals
         Dim respuesta As Boolean = False
 
         If other IsNot Nothing Then
-            Dim eqSePuedeReintentarLaConfirmacion = SePuedeReintentarLaConfirmacion.Equals(other.SePuedeReintentarLaConfirmacion)
+            Dim eqSePuedeReintentarLaConfirmacion = SePuedeReintentar.Equals(other.SePuedeReintentar)
             Dim eqInstruccionParaRecalendarizar = InstruccionParaRecalendarizar.Equals(LaInstruccionParaRecalendarizar, other.LaInstruccionParaRecalendarizar)
             Dim eqMensajeTransaccionConfirmada = InformativoTransaccionFueRecalendarizada.Equals(MensajeABitacoraTransaccionFueRecalendarizada, other.MensajeABitacoraTransaccionFueRecalendarizada)
             respuesta = eqSePuedeReintentarLaConfirmacion And eqInstruccionParaRecalendarizar And eqMensajeTransaccionConfirmada

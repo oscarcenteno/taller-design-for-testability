@@ -15,7 +15,7 @@
 
     Public ReadOnly Property FechaDeConfirmacion As Date
         Get
-            Return _estadoInterno.FechaDeConfirmacion
+            Return _estadoInterno.FecConfirmacion
         End Get
     End Property
 
@@ -28,7 +28,7 @@
         Return respuesta
     End Function
 
-    Public Function ErroresAlConfirmar() As IEnumerable(Of Object)
+    Public Function ObtenerErroresAlConfirmar() As IEnumerable(Of Object)
         Dim respuesta As New List(Of Object)
 
         If Not SePuedeConfirmar() Then
@@ -52,13 +52,11 @@
     End Function
 
     Sub Confirmar(fechaDeConfirmacion As Date)
-        _estadoInterno.FechaDeConfirmacion = fechaDeConfirmacion
+        _estadoInterno.FecConfirmacion = fechaDeConfirmacion
         _estadoInterno.SeHaNotificado = True
     End Sub
 
 #End Region
-
-    
 
 #Region "Reglas de Reintentos de Confirmacion"
 

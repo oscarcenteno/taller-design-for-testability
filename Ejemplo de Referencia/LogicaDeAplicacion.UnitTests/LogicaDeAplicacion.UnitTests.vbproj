@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{11A86F81-E3EE-4EB1-A164-77EC0E081884}</ProjectGuid>
+    <ProjectGuid>{C0B3F657-2903-4867-B4A3-D1A69DE9903B}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Especificaciones</RootNamespace>
-    <AssemblyName>Especificaciones</AssemblyName>
+    <RootNamespace>LogicaDeAplicacion.UnitTests</RootNamespace>
+    <AssemblyName>LogicaDeAplicacion.UnitTests</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
@@ -16,7 +16,6 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
-    <NuGetPackageImportStamp>f74cfbf1</NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,7 +23,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>Especificaciones.xml</DocumentationFile>
+    <DocumentationFile>LogicaDeAplicacion.UnitTests.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -33,7 +32,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Especificaciones.xml</DocumentationFile>
+    <DocumentationFile>LogicaDeAplicacion.UnitTests.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -49,14 +48,16 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FakeItEasy">
+      <HintPath>..\packages\FakeItEasy.1.25.2\lib\net40\FakeItEasy.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="TechTalk.SpecFlow, Version=1.9.0.77, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="TechTalk.SpecFlow">
       <HintPath>..\packages\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -85,13 +86,12 @@
     <Import Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Booleano.vb" />
-    <Compile Include="Confirmar una transaccion.feature.vb">
+    <Compile Include="Confirmar\Confirmar.feature.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Confirmar una transaccion.feature</DependentUpon>
+      <DependentUpon>Confirmar.feature</DependentUpon>
     </Compile>
-    <Compile Include="ConfirmarUnaTransaccionSteps.vb" />
+    <Compile Include="Confirmar\SePuedeConfirmarUnaTransaccionAutorizadaSteps.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -118,9 +118,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Confirmar una transaccion.feature">
+    <None Include="Confirmar\Confirmar.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Confirmar una transaccion.feature.vb</LastGenOutput>
+      <LastGenOutput>Confirmar.feature.vb</LastGenOutput>
     </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -134,6 +134,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogicaDeAplicacion\LogicaDeAplicacion.vbproj">
+      <Project>{84bd8cdd-b256-40ca-801b-cd95186cb995}</Project>
+      <Name>LogicaDeAplicacion</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogicaDeNegocio\LogicaDeNegocio.vbproj">
       <Project>{c48f62e1-358d-46b2-9e5a-5af22eafa4e4}</Project>
       <Name>LogicaDeNegocio</Name>

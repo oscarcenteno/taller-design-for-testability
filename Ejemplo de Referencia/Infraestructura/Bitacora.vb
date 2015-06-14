@@ -1,13 +1,11 @@
-﻿Imports LogicaDeAplicacion
-
+﻿
 Public Class Bitacora
-    Implements IBitacora
 
-    Public Sub Escribir(mensaje As Object) Implements IBitacora.Escribir
+    Public Sub Escribir(mensaje As Object)
         Console.WriteLine("Bitacora: " + mensaje.ToString)
     End Sub
 
-    Public Sub Escribir(listaDeMensajes As List(Of Object)) Implements IBitacora.Escribir
+    Public Sub Escribir(listaDeMensajes As List(Of Object))
         For Each mensaje In listaDeMensajes
             Escribir(mensaje)
         Next

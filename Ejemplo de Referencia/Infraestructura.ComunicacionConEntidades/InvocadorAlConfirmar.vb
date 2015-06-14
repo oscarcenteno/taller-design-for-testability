@@ -1,3 +1,6 @@
-﻿Public Class InvocadorAlConfirmar
+﻿Imports LogicaDeAplicacion
+Imports LogicaDeNegocio
+
+Public Class InvocadorAlConfirmar
 
 End Class

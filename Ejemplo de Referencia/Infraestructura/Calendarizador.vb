@@ -1,9 +1,9 @@
 ﻿Imports LogicaDeAplicacion
 
 Public Class Calendarizador
-    Implements ICalendarizador
+    Implements ICalendarizadorAlConfirmar
 
-    Public Sub ReCalendarizarConfirmacion(instruccionParaRecalendarizar As LogicaDeNegocio.InstruccionParaRecalendarizar) Implements ICalendarizador.ReCalendarizarConfirmacion
+    Public Sub ReCalendarizarConfirmacion(instruccionParaRecalendarizar As LogicaDeNegocio.InstruccionParaRecalendarizar) Implements ICalendarizadorAlConfirmar.Recalendarizar
 
     End Sub
 

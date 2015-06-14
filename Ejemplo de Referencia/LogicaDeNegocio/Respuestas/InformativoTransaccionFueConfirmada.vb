@@ -10,9 +10,9 @@
     Public Sub New(miTransaccion As TransaccionDTO)
         _codReferencia = miTransaccion.CodReferencia
         _codEntidadOrigen = miTransaccion.CodEntidadOrigen
-        _codMoneda = miTransaccion.CodMonedaPadronMovilDestino
-        _numTelefono = miTransaccion.NumTelefonoPadronMovilDestino
-        _codEntidadPadronMovilDestino = miTransaccion.CodEntidadPadronMovilDestino
+        _codMoneda = miTransaccion.CodMonedaDestino
+        _numTelefono = miTransaccion.NumTelefonoDestino
+        _codEntidadPadronMovilDestino = miTransaccion.CodEntidadDestino
     End Sub
 
     Public Overrides Function ToString() As String

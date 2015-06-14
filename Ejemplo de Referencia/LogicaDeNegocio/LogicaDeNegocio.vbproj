@@ -62,16 +62,16 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Confirmar\Errores\ErrorNoSePuedeInvocarAEntidadPorParametrosInvalidos.vb" />
-    <Compile Include="Confirmar\Errores\ErrorTransaccionYaFueNotificada.vb" />
-    <Compile Include="Confirmar\Errores\ErrorTransaccionNoEstaAutorizada.vb" />
+    <Compile Include="Errores\ErrorNoSePuedeInvocarAEntidadPorParametrosInvalidos.vb" />
+    <Compile Include="Errores\ErrorTransaccionYaFueNotificada.vb" />
+    <Compile Include="Errores\ErrorTransaccionNoEstaAutorizada.vb" />
     <Compile Include="Recalendarizar\InformativoTransaccionFueRecalendarizada.vb" />
-    <Compile Include="Confirmar\Respuestas\RespuestaAlValidarRecalendarizacion.vb" />
-    <Compile Include="Confirmar\Respuestas\InstruccionDeConfirmacion.vb" />
-    <Compile Include="Confirmar\ParametrosAlConfirmar.vb" />
+    <Compile Include="Respuestas\RespuestaAlValidarRecalendarizacion.vb" />
+    <Compile Include="Respuestas\InstruccionDeConfirmacion.vb" />
+    <Compile Include="ParametrosAlConfirmar.vb" />
     <Compile Include="ProcesoAlConfirmar.vb" />
-    <Compile Include="Confirmar\Respuestas\InformativoTransaccionFueConfirmada.vb" />
-    <Compile Include="Confirmar\Respuestas\RespuestaAlValidarProceso.vb" />
+    <Compile Include="Respuestas\InformativoTransaccionFueConfirmada.vb" />
+    <Compile Include="Respuestas\RespuestaAlValidarProceso.vb" />
     <Compile Include="EstadoTransaccion.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

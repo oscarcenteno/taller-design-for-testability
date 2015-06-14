@@ -63,12 +63,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.vb" />
-    <Compile Include="Interfaces de Infraestructura\ICalendarizador.vb" />
-    <Compile Include="Interfaces de Infraestructura\IInvocadorAlConfirmar.vb" />
-    <Compile Include="Interfaces de Infraestructura\IRepositorioDeParametros.vb" />
-    <Compile Include="Interfaces de Infraestructura\IRepositorioDeTransacciones.vb" />
-    <Compile Include="Interfaces de Infraestructura\IBitacora.vb" />
-    <Compile Include="Interfaces de Infraestructura\RespuestaAlRecalendarizarConfirmacion.vb" />
+    <Compile Include="Dependencias\ICalendarizadorAlConfirmar.vb" />
+    <Compile Include="Dependencias\IInvocadorAlConfirmar.vb" />
+    <Compile Include="Dependencias\IRepositorioAlConfirmar.vb" />
+    <Compile Include="Dependencias\IBitacoraAlConfirmar.vb" />
+    <Compile Include="Dependencias\RespuestaAlRecalendarizarConfirmacion.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -84,8 +83,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="RespuestaAlConfirmar.vb" />
-    <Compile Include="Interfaces de Infraestructura\RespuestaAlInvocarEntidad.vb" />
+    <Compile Include="Respuestas\RespuestaAlConfirmar.vb" />
+    <Compile Include="Dependencias\RespuestaAlInvocarEntidad.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

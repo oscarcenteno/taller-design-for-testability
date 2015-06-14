@@ -23,10 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{9E2AC7CF
 		build.xml = build.xml
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{AB8114D5-53B0-4F6C-9909-48116B6FAD79}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LogicaDeAplicacion.UnitTests", "LogicaDeAplicacion.UnitTests\LogicaDeAplicacion.UnitTests.vbproj", "{C0B3F657-2903-4867-B4A3-D1A69DE9903B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +59,10 @@ Global
 		{84BD8CDD-B256-40CA-801B-CD95186CB995}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84BD8CDD-B256-40CA-801B-CD95186CB995}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84BD8CDD-B256-40CA-801B-CD95186CB995}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0B3F657-2903-4867-B4A3-D1A69DE9903B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0B3F657-2903-4867-B4A3-D1A69DE9903B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0B3F657-2903-4867-B4A3-D1A69DE9903B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0B3F657-2903-4867-B4A3-D1A69DE9903B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

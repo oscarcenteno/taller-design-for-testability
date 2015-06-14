@@ -1,57 +1,58 @@
 ﻿Public Class ProcesoAlConfirmar
 
-    Public Function ValidarConfirmacion(parametros As ParametrosAlConfirmar, _
+    Public Function ValidarProceso(parametros As ParametrosAlConfirmar, _
                                    datosDeTransaccion As TransaccionDTO, _
-                                   fecha As Date) _
+                                   fechaYHoraActual As Date) _
                                As RespuestaAlValidarProceso
 
         Dim respuesta As New RespuestaAlValidarProceso
 
         ' Validaciones de negocio y de parametros
-        Dim miTransaccionBE As New TransaccionBE(datosDeTransaccion)
-        respuesta.ProcesoPuedeEjecutarse = miTransaccionBE.SePuedeConfirmar And parametros.SePuedeInvocarAEntidad
+        Dim laTransaccion As New TransaccionBE(datosDeTransaccion)
+        respuesta.SePuedeConfirmar = laTransaccion.SePuedeConfirmar And parametros.SePuedeInvocarAEntidad
 
-        If respuesta.ProcesoPuedeEjecutarse Then
+        If respuesta.SePuedeConfirmar Then
             ' Logica de negocio
-            miTransaccionBE.Confirmar(fecha)
-            respuesta.DatosTransaccionConfirmada = miTransaccionBE.ObtenerDatosDeTransaccion
+            laTransaccion.Confirmar(fechaYHoraActual)
+            respuesta.DatosDeTransaccionConfirmada = laTransaccion.ObtenerDatosDeTransaccion
             'Bitacora e instrucciones
-            respuesta.laInstruccionDeConfirmacion = New InstruccionDeConfirmacion(datosDeTransaccion, parametros, fecha)
-            respuesta.MensajeTransaccionConfirmada = New InformativoTransaccionFueConfirmada(datosDeTransaccion)
+            respuesta.LaInstruccionDeConfirmacion = New InstruccionDeConfirmacion(datosDeTransaccion, parametros, fechaYHoraActual)
+            respuesta.MensajeDeTransaccionFueConfirmada = New InformativoTransaccionFueConfirmada(datosDeTransaccion)
         Else
-            'Reporte errores
-            respuesta.Errores.AddRange(miTransaccionBE.ErroresAlConfirmar)
-            respuesta.Errores.AddRange(parametros.ErroresDeParametros)
+            'Reporte de errores por los que el proceso no puede ejecutarse
+            respuesta.Errores.AddRange(laTransaccion.ObtenerErroresAlConfirmar)
+            respuesta.Errores.AddRange(parametros.ObtenerErroresDeParametros)
         End If
 
         Return respuesta
     End Function
 
-    Public Function ValidarRecalendarizacion(fecha As Date, datosDeTransaccion As TransaccionDTO, _
+    Public Function ValidarRecalendarizacion(fechaYHoraActual As Date, datosDeTransaccion As TransaccionDTO, _
                                              parametrosParaRecalendarizar As ParametrosAlRecalendarizar, _
-                                             intentos As Integer) As RespuestaAlValidarRecalendarizacion
+                                             intentosYaRealizados As Integer) As RespuestaAlValidarRecalendarizacion
 
         Dim respuesta As New RespuestaAlValidarRecalendarizacion
 
         ' Validaciones de negocio y de parametros
-        Dim miTransaccionBE As New TransaccionBE(datosDeTransaccion)
+        Dim laTransaccion As New TransaccionBE(datosDeTransaccion)
 
-        respuesta.SePuedeReintentarLaConfirmacion = miTransaccionBE.SePuedeReintentarLaConfirmacion(intentos)
-        Dim fechaInicio = fecha.Add(parametrosParaRecalendarizar.IntervaloDeNotificacion)
+        respuesta.SePuedeReintentar = laTransaccion.SePuedeReintentarLaConfirmacion(intentosYaRealizados)
+        Dim fechaYHoraCalendarizada = fechaYHoraActual.Add(parametrosParaRecalendarizar.IntervaloDeNotificacion)
 
-        Dim numeroDeEsteIntento = intentos + 1
+        Dim numeroDeEsteIntento = intentosYaRealizados + 1
 
-        If respuesta.SePuedeReintentarLaConfirmacion Then
+        If respuesta.SePuedeReintentar Then
             respuesta.LaInstruccionParaRecalendarizar = New InstruccionParaRecalendarizar() _
-                With {.FechaInicio = fechaInicio, .Intentos = numeroDeEsteIntento, _
-                      .CodReferencia = datosDeTransaccion.CodReferencia}
+                With {.FechaInicio = fechaYHoraCalendarizada, _
+                      .Intentos = numeroDeEsteIntento, _
+                      .CodReferencia = datosDeTransaccion.CodReferencia _
+                     }
 
             respuesta.MensajeABitacoraTransaccionFueRecalendarizada = _
-                New InformativoTransaccionFueRecalendarizada(datosDeTransaccion, numeroDeEsteIntento, fechaInicio)
+                New InformativoTransaccionFueRecalendarizada(datosDeTransaccion, numeroDeEsteIntento, fechaYHoraCalendarizada)
         End If
 
         Return respuesta
-
 
     End Function
 

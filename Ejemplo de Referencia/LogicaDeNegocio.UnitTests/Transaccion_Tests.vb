@@ -10,7 +10,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         ' expectativa
         Dim cantidadEsperada = 0
         ' sut
-        Dim cantidadObtenida = miTransaccion.ErroresAlConfirmar().Count
+        Dim cantidadObtenida = miTransaccion.ObtenerErroresAlConfirmar().Count
         ' verificacion
         Assert.AreEqual(cantidadEsperada, cantidadObtenida, "No debe haber errores al confirmar")
     End Sub
@@ -20,7 +20,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         ' expectativa
         Dim errorEsperado = GetType(ErrorTransaccionNoEstaAutorizada)
         ' sut
-        Dim erroresObtenidos = miTransaccion.ErroresAlConfirmar()
+        Dim erroresObtenidos = miTransaccion.ObtenerErroresAlConfirmar()
         ' verificacion
         CollectionAssert.AllItemsAreInstancesOfType(erroresObtenidos, errorEsperado)
     End Sub
@@ -30,7 +30,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         ' expectativa
         Dim errorEsperado = GetType(ErrorTransaccionYaFueNotificada)
         ' sut
-        Dim erroresObtenidos = miTransaccion.ErroresAlConfirmar()
+        Dim erroresObtenidos = miTransaccion.ObtenerErroresAlConfirmar()
         ' verificacion
         CollectionAssert.AllItemsAreInstancesOfType(erroresObtenidos, errorEsperado)
     End Sub
@@ -43,7 +43,7 @@ Imports Microsoft.VisualStudio.TestTools.UnitTesting
         erroresEsperados.Add(New ErrorTransaccionNoEstaAutorizada(miTransaccionDTO))
         erroresEsperados.Add(New ErrorTransaccionYaFueNotificada(miTransaccionDTO))
         ' sut
-        Dim erroresObtenidos = miTransaccion.ErroresAlConfirmar()
+        Dim erroresObtenidos = miTransaccion.ObtenerErroresAlConfirmar()
         ' verificacion
         CollectionAssert.AreEqual(erroresObtenidos, erroresEsperados)
 

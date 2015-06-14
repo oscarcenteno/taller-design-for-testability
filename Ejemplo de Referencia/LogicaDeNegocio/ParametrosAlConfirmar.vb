@@ -7,11 +7,14 @@
     Public Property CodEntidad As String
     Public Property CodReferencia As String
 
-    Sub New(miTransaccion As TransaccionDTO, theUrl As String, theTimeOut As Integer, theCn As String)
+    Public Sub New()
+    End Sub
+
+    Public Sub New(miTransaccion As TransaccionDTO, theUrl As String, theTimeOut As Integer, theCn As String)
         Url = theUrl
         TimeOut = theTimeOut
         Cn = theCn
-        CodEntidad = miTransaccion.CodEntidadPadronMovilDestino
+        CodEntidad = miTransaccion.CodEntidadDestino
         CodReferencia = miTransaccion.CodReferencia
     End Sub
 
@@ -25,7 +28,7 @@
         Return respuesta
     End Function
 
-    Public Function ErroresDeParametros() As IList(Of ErrorNoSePuedeInvocarAEntidadPorParametrosInvalidos)
+    Public Function ObtenerErroresDeParametros() As IList(Of ErrorNoSePuedeInvocarAEntidadPorParametrosInvalidos)
         Dim respuesta As New List(Of ErrorNoSePuedeInvocarAEntidadPorParametrosInvalidos)
         If Not SePuedeInvocarAEntidad() Then
             respuesta.Add(New ErrorNoSePuedeInvocarAEntidadPorParametrosInvalidos(CodReferencia, CodEntidad))
