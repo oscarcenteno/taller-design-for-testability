@@ -2,6 +2,6 @@
 
 Public Interface ICalendarizadorAlConfirmar
 
-    Sub Recalendarizar(instruccion As InstruccionParaRecalendarizar)
+    Sub Reintentar(instruccion As InstruccionParaRecalendarizar)
 
 End Interface

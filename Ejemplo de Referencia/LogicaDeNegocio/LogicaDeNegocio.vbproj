@@ -62,16 +62,14 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Errores\ErrorNoSePuedeInvocarAEntidadPorParametrosInvalidos.vb" />
-    <Compile Include="Errores\ErrorTransaccionYaFueNotificada.vb" />
-    <Compile Include="Errores\ErrorTransaccionNoEstaAutorizada.vb" />
-    <Compile Include="Recalendarizar\InformativoTransaccionFueRecalendarizada.vb" />
-    <Compile Include="Respuestas\RespuestaAlValidarRecalendarizacion.vb" />
-    <Compile Include="Respuestas\InstruccionDeConfirmacion.vb" />
-    <Compile Include="ParametrosAlConfirmar.vb" />
-    <Compile Include="ProcesoAlConfirmar.vb" />
-    <Compile Include="Respuestas\InformativoTransaccionFueConfirmada.vb" />
-    <Compile Include="Respuestas\RespuestaAlValidarProceso.vb" />
+    <Compile Include="Confirmar\Entidades\ParametrosAlConfirmarBE.vb" />
+    <Compile Include="Confirmar\DTOs\ErrorNoSePuedeInvocarAEntidadPorParametrosInvalidos.vb" />
+    <Compile Include="Confirmar\DTOs\ErrorTransaccionDebeEstarAutorizadaYNoNotificada.vb" />
+    <Compile Include="Recalendarizar\Entidades\ReintentosBE.vb" />
+    <Compile Include="Recalendarizar\DTOs\MensajeTransaccionFueRecalendarizada.vb" />
+    <Compile Include="Confirmar\DTOs\InstruccionDeConfirmacion.vb" />
+    <Compile Include="Confirmar\DTOs\ParametrosAlConfirmarDTO.vb" />
+    <Compile Include="Confirmar\DTOs\MensajeTransaccionFueConfirmada.vb" />
     <Compile Include="EstadoTransaccion.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -88,10 +86,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Recalendarizar\InstruccionParaRecalendarizar.vb" />
-    <Compile Include="Recalendarizar\ParametrosAlRecalendarizar.vb" />
-    <Compile Include="TransaccionBE.vb" />
-    <Compile Include="TransaccionDTO.vb" />
+    <Compile Include="Recalendarizar\DTOs\InstruccionParaRecalendarizar.vb" />
+    <Compile Include="Recalendarizar\DTOs\ParametrosAlRecalendarizarDTO.vb" />
+    <Compile Include="Confirmar\Entidades\TransaccionBE.vb" />
+    <Compile Include="Confirmar\DTOs\TransaccionDTO.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

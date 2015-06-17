@@ -1,9 +1,5 @@
-﻿Imports LogicaDeNegocio
+﻿Public Class RespuestaAlConfirmar
 
-Public Class RespuestaAlConfirmar
-
-    Property AlValidarConfirmacion As RespuestaAlValidarProceso
-
-    Property AlInvocarEntidad As RespuestaAlInvocarEntidad
+    Property SeNecesitaReintentar As Boolean
 
 End Class

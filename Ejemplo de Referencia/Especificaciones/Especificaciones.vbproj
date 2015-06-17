@@ -86,12 +86,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Booleano.vb" />
-    <Compile Include="Confirmar una transaccion.feature.vb">
+    <Compile Include="Confirmar pago\Confirmar un pago.feature.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Confirmar una transaccion.feature</DependentUpon>
+      <DependentUpon>Confirmar un pago.feature</DependentUpon>
     </Compile>
-    <Compile Include="ConfirmarUnaTransaccionSteps.vb" />
+    <Compile Include="Confirmar pago\ConfirmarUnPagoSteps.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -107,6 +107,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Confirmar pago\Reintentar una confirmacion.feature.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reintentar una confirmacion.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Confirmar pago\ReintentarUnaConfirmacionSteps.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -118,9 +124,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Confirmar una transaccion.feature">
+    <None Include="Confirmar pago\Confirmar un pago.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Confirmar una transaccion.feature.vb</LastGenOutput>
+      <LastGenOutput>Confirmar un pago.feature.vb</LastGenOutput>
     </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -132,6 +138,10 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="Confirmar pago\Reintentar una confirmacion.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Reintentar una confirmacion.feature.vb</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LogicaDeNegocio\LogicaDeNegocio.vbproj">

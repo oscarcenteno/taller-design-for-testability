@@ -54,6 +54,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="TechTalk.SpecFlow, Version=1.9.0.77, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -80,8 +84,20 @@
     <Import Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProcesoAlConfirmar_Tests.vb" />
-    <Compile Include="Transaccion_Tests.vb" />
+    <Compile Include="Booleano.vb" />
+    <Compile Include="Confirmar\TransaccionDTO_Tests_Steps.vb" />
+    <Compile Include="Confirmar\MensajeTransaccionFueConfirmada_Tests - Copy.vb" />
+    <Compile Include="Confirmar\TransaccionDTO_Tests.feature.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransaccionDTO_Tests.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Confirmar\InstruccionDeConfirmacion_Tests.vb" />
+    <Compile Include="Confirmar\ErrorTransaccionDebeEstarAutorizadaYNoNotificada_Tests.vb" />
+    <Compile Include="Confirmar\ErrorNoSePuedeInvocarAEntidadPorParametrosInvalidos_Tests.vb" />
+    <Compile Include="Recalendarizar\MensajeTransaccionFueRecalendarizada_Tests.vb" />
+    <Compile Include="Recalendarizar\InstruccionParaRecalendarizar_Tests.vb" />
+    <Compile Include="TransaccionBE_Tests.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -97,6 +113,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ReintentosBE_Tests.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -107,6 +124,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Confirmar\TransaccionDTO_Tests.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>TransaccionDTO_Tests.feature.vb</LastGenOutput>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -116,6 +138,7 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -62,12 +62,11 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App.vb" />
+    <Compile Include="CoordinadorAlConfirmar.vb" />
     <Compile Include="Dependencias\ICalendarizadorAlConfirmar.vb" />
     <Compile Include="Dependencias\IInvocadorAlConfirmar.vb" />
     <Compile Include="Dependencias\IRepositorioAlConfirmar.vb" />
     <Compile Include="Dependencias\IBitacoraAlConfirmar.vb" />
-    <Compile Include="Dependencias\RespuestaAlRecalendarizarConfirmacion.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

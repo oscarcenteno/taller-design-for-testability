@@ -6,8 +6,8 @@ Public Interface IRepositorioAlConfirmar
 
     Function ObtenerTransaccion(codReferencia As String) As TransaccionDTO
 
-    Function ObtenerParametrosParaConfirmar(datosDeTransaccion As TransaccionDTO) As Object
+    Function ObtenerParametros(datosDeTransaccion As TransaccionDTO) As ParametrosAlConfirmarDTO
 
-    Function ObtenerParametrosParaRecalendarizar() As ParametrosAlRecalendarizar
+    Function ObtenerParametrosParaRecalendarizar() As ParametrosAlRecalendarizarDTO
 
 End Interface
