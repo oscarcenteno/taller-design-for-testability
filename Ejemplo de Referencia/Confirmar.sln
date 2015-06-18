@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LogicaDeNegocio", "LogicaDeNegocio\LogicaDeNegocio.vbproj", "{C48F62E1-358D-46B2-9E5A-5AF22EAFA4E4}"
 EndProject
@@ -29,6 +29,22 @@ EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Especificaciones", "Especificaciones\Especificaciones.vbproj", "{11A86F81-E3EE-4EB1-A164-77EC0E081884}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LogicaDeAplicacion.UnitTests", "LogicaDeAplicacion.UnitTests\LogicaDeAplicacion.UnitTests.vbproj", "{C0B3F657-2903-4867-B4A3-D1A69DE9903B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Diagramas de Colaboracion", "Diagramas de Colaboracion", "{5A6F6BDE-DE11-49CB-8B0A-967FA0458BB6}"
+	ProjectSection(SolutionItems) = preProject
+		Diagramas de Colaboracion\Caso basico al confirmar un pago.pdf = Diagramas de Colaboracion\Caso basico al confirmar un pago.pdf
+		Diagramas de Colaboracion\Caso basico al confirmar un pago.png = Diagramas de Colaboracion\Caso basico al confirmar un pago.png
+		Diagramas de Colaboracion\Caso basico al confirmar un pago.xml = Diagramas de Colaboracion\Caso basico al confirmar un pago.xml
+		Diagramas de Colaboracion\readme.md = Diagramas de Colaboracion\readme.md
+		Diagramas de Colaboracion\Se reintentará si no hay comunicación con la entidad destino.pdf = Diagramas de Colaboracion\Se reintentará si no hay comunicación con la entidad destino.pdf
+		Diagramas de Colaboracion\Se reintentará si no hay comunicación con la entidad destino.png = Diagramas de Colaboracion\Se reintentará si no hay comunicación con la entidad destino.png
+		Diagramas de Colaboracion\Se reintentará si no hay comunicación con la entidad destino.xml = Diagramas de Colaboracion\Se reintentará si no hay comunicación con la entidad destino.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos iniciales", "Ejemplos iniciales", "{B357B55A-8423-4BA5-BC32-3CBD17FE5B2A}"
+	ProjectSection(SolutionItems) = preProject
+		Readme.md = Readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,12 +89,12 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{5F27EEA1-51E3-4E5A-854D-6CDA72E8F8B4} = {07597C78-01B3-4D9E-BD81-0AE3E7646F9A}
-		{84BD8CDD-B256-40CA-801B-CD95186CB995} = {07597C78-01B3-4D9E-BD81-0AE3E7646F9A}
 		{C48F62E1-358D-46B2-9E5A-5AF22EAFA4E4} = {07597C78-01B3-4D9E-BD81-0AE3E7646F9A}
-		{C0B3F657-2903-4867-B4A3-D1A69DE9903B} = {07597C78-01B3-4D9E-BD81-0AE3E7646F9A}
+		{5F27EEA1-51E3-4E5A-854D-6CDA72E8F8B4} = {07597C78-01B3-4D9E-BD81-0AE3E7646F9A}
+		{BFB79C0C-4B64-4B99-834A-79F7978C3089} = {CFDEB72F-DAEF-444A-B811-27B5D8609D89}
 		{B4506B10-5926-4989-A6CF-4D652DA9547C} = {CFDEB72F-DAEF-444A-B811-27B5D8609D89}
 		{C6710D3B-E429-4173-BB97-171B857EC105} = {CFDEB72F-DAEF-444A-B811-27B5D8609D89}
-		{BFB79C0C-4B64-4B99-834A-79F7978C3089} = {CFDEB72F-DAEF-444A-B811-27B5D8609D89}
+		{84BD8CDD-B256-40CA-801B-CD95186CB995} = {07597C78-01B3-4D9E-BD81-0AE3E7646F9A}
+		{C0B3F657-2903-4867-B4A3-D1A69DE9903B} = {07597C78-01B3-4D9E-BD81-0AE3E7646F9A}
 	EndGlobalSection
 EndGlobal
