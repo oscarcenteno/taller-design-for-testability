@@ -3,7 +3,6 @@
 #Region "Confirmacion"
 
     Private _estadoInterno As TransaccionDTO
-    Private Const _maximoDeReintentosPermitidos As Integer = 3
 
     Public Sub New(estadoInterno As TransaccionDTO)
         _estadoInterno = estadoInterno
