@@ -65,7 +65,7 @@ Namespace Especificaciones.ConfirmarPago
 Me.ScenarioSetup(scenarioInfo)
 #End ExternalSource
 #ExternalSource("Confirmar un pago.feature",5)
-testRunner.Given(String.Format("una transaccion en estado ""{0}"" y ""{1}""", estado, seHaNotificado), CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Dada ")
+testRunner.Given(String.Format("un pago en estado ""{0}"" y ""{1}""", estado, seHaNotificado), CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Dado ")
 #End ExternalSource
 #ExternalSource("Confirmar un pago.feature",6)
 testRunner.When("se solicita confirmar", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Cuando ")
@@ -81,11 +81,11 @@ testRunner.Then(String.Format("se confirma ""{0}""", seConfirma), CType(Nothing,
          Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Confirmar un pago"),  _
          Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "el caso basico"),  _
          Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:intencion", "el caso basico"),  _
-         Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:estado", "Autorizada"),  _
+         Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:estado", "Autorizado"),  _
          Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:se ha notificado", "No"),  _
          Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:se confirma", "Si")>  _
         Public Overridable Sub SePuedeConfirmarSiElPagoEstaAutorizadoYNoSeHaNotificado_ElCasoBasico()
-            Me.SePuedeConfirmarSiElPagoEstaAutorizadoYNoSeHaNotificado("el caso basico", "Autorizada", "No", "Si", CType(Nothing,String()))
+            Me.SePuedeConfirmarSiElPagoEstaAutorizadoYNoSeHaNotificado("el caso basico", "Autorizado", "No", "Si", CType(Nothing,String()))
         End Sub
         
         <Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute(),  _
@@ -93,11 +93,11 @@ testRunner.Then(String.Format("se confirma ""{0}""", seConfirma), CType(Nothing,
          Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Confirmar un pago"),  _
          Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "no se confirma varias veces"),  _
          Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:intencion", "no se confirma varias veces"),  _
-         Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:estado", "Autorizada"),  _
+         Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:estado", "Autorizado"),  _
          Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:se ha notificado", "Si"),  _
          Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:se confirma", "No")>  _
         Public Overridable Sub SePuedeConfirmarSiElPagoEstaAutorizadoYNoSeHaNotificado_NoSeConfirmaVariasVeces()
-            Me.SePuedeConfirmarSiElPagoEstaAutorizadoYNoSeHaNotificado("no se confirma varias veces", "Autorizada", "Si", "No", CType(Nothing,String()))
+            Me.SePuedeConfirmarSiElPagoEstaAutorizadoYNoSeHaNotificado("no se confirma varias veces", "Autorizado", "Si", "No", CType(Nothing,String()))
         End Sub
         
         <Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute(),  _
@@ -115,39 +115,13 @@ testRunner.Then(String.Format("se confirma ""{0}""", seConfirma), CType(Nothing,
         <Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute(),  _
          Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Se puede confirmar si el pago esta autorizado y no se ha notificado"),  _
          Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Confirmar un pago"),  _
-         Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "las rechazadas no se confirman"),  _
-         Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:intencion", "las rechazadas no se confirman"),  _
-         Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:estado", "Rechazada"),  _
+         Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("VariantName", "los rechazados no se confirman"),  _
+         Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:intencion", "los rechazados no se confirman"),  _
+         Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:estado", "Rechazado"),  _
          Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:se ha notificado", "Si"),  _
          Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("Parameter:se confirma", "No")>  _
-        Public Overridable Sub SePuedeConfirmarSiElPagoEstaAutorizadoYNoSeHaNotificado_LasRechazadasNoSeConfirman()
-            Me.SePuedeConfirmarSiElPagoEstaAutorizadoYNoSeHaNotificado("las rechazadas no se confirman", "Rechazada", "Si", "No", CType(Nothing,String()))
-        End Sub
-        
-        <Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute(),  _
-         Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Luego de confirmar, la transaccion está notificada"),  _
-         Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Confirmar un pago")>  _
-        Public Overridable Sub LuegoDeConfirmarLaTransaccionEstaNotificada()
-            Dim scenarioInfo As TechTalk.SpecFlow.ScenarioInfo = New TechTalk.SpecFlow.ScenarioInfo("Luego de confirmar, la transaccion está notificada", CType(Nothing,String()))
-#ExternalSource("Confirmar un pago.feature",16)
-Me.ScenarioSetup(scenarioInfo)
-#End ExternalSource
-#ExternalSource("Confirmar un pago.feature",18)
-testRunner.Given("una transaccion que no ha sido notificada", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Dada ")
-#End ExternalSource
-#ExternalSource("Confirmar un pago.feature",19)
-testRunner.And("la fecha es ""2015-06-01 12:00 PM""", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Y ")
-#End ExternalSource
-#ExternalSource("Confirmar un pago.feature",20)
-testRunner.When("se confirma", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Cuando ")
-#End ExternalSource
-#ExternalSource("Confirmar un pago.feature",21)
-testRunner.Then("la transaccion se ha notificado", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Entonces ")
-#End ExternalSource
-#ExternalSource("Confirmar un pago.feature",22)
-testRunner.And("registra la fecha de la confirmación", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Y ")
-#End ExternalSource
-            Me.ScenarioCleanup
+        Public Overridable Sub SePuedeConfirmarSiElPagoEstaAutorizadoYNoSeHaNotificado_LosRechazadosNoSeConfirman()
+            Me.SePuedeConfirmarSiElPagoEstaAutorizadoYNoSeHaNotificado("los rechazados no se confirman", "Rechazado", "Si", "No", CType(Nothing,String()))
         End Sub
     End Class
 End Namespace

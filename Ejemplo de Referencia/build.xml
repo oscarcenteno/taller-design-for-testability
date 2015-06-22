@@ -19,13 +19,13 @@
 
   <Target Name="unit-tests">
 
-    <Exec Command='"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\mstest.exe" /testcontainer:"LogicaDeNegocio.UnitTests\bin\Debug\LogicaDeNegocio.UnitTests.dll" '/>
+    <!--<Exec Command='"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\mstest.exe" /testcontainer:"LogicaDeNegocio.UnitTests\bin\Debug\LogicaDeNegocio.UnitTests.dll" '/>-->
 
   </Target>
 
   <Target Name="specs">
 
-    <Exec Command='"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\mstest.exe" /testcontainer:"especificaciones\bin\Debug\especificaciones.dll" /testcontainer:"LogicaDeAplicacion.UnitTests\bin\Debug\LogicaDeAplicacion.UnitTests.dll" /resultsfile:"TestResults\especificaciones-results.trx"'/>
+    <Exec Command='"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\mstest.exe" /testcontainer:"especificaciones\bin\Debug\especificaciones.dll" /testcontainer:"EspecificacionesTecnicas\bin\Debug\EspecificacionesTecnicas.dll" /resultsfile:"TestResults\especificaciones-results.trx"'/>
 
   </Target>
   

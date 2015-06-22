@@ -43,7 +43,7 @@ Included items must then not match any entries in the exclude list to remain inc
             <Functions>
               <Exclude>
                 <Function>.*\.UnitTests\..*</Function>
-                <Function>.*Especificaciones\..*</Function>
+                <Function>.*Especificaciones.*</Function>
                 <Function>.*My\..*</Function>
                 <Function>^std::.*</Function>
                 <Function>^ATL::.*</Function>

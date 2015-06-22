@@ -4,21 +4,20 @@ Imports LogicaDeNegocio
 Public Class BaseDeDatosAlConfirmar
     Implements IRepositorioAlConfirmar
 
-
-    Public Sub ActualizarTransaccionConfirmada(datosDeTransaccion As TransaccionDTO) Implements IRepositorioAlConfirmar.ActualizarTransaccionConfirmada
-
+    Public Sub ActualizarPagoConfirmado(datosDeTransaccion As PagoPorConfirmar) Implements IRepositorioAlConfirmar.ActualizarPagoConfirmado
+        Throw New NotImplementedException
     End Sub
 
-    Public Function ObtenerParametros(datosDeTransaccion As TransaccionDTO) As LogicaDeNegocio.ParametrosAlConfirmarDTO Implements IRepositorioAlConfirmar.ObtenerParametros
-
+    Public Function ObtenerParametros(datosDeTransaccion As PagoPorConfirmar) As LogicaDeNegocio.ParametrosAlConfirmar Implements IRepositorioAlConfirmar.ObtenerParametros
+        Throw New NotImplementedException
     End Function
 
-    Public Function ObtenerParametrosParaRecalendarizar() As ParametrosAlRecalendarizarDTO Implements IRepositorioAlConfirmar.ObtenerParametrosParaRecalendarizar
-
+    Public Function ObtenerParametrosParaRecalendarizar() As ParametrosAlReintentar Implements IRepositorioAlConfirmar.ObtenerParametrosParaReintentar
+        Throw New NotImplementedException
     End Function
 
-    Public Function ObtenerTransaccion(codReferencia As String) As LogicaDeNegocio.TransaccionDTO Implements IRepositorioAlConfirmar.ObtenerTransaccion
-
+    Public Function ObtenerPagoPorConfirmar(codReferencia As String) As LogicaDeNegocio.PagoPorConfirmar Implements IRepositorioAlConfirmar.ObtenerPagoPorConfirmar
+        Throw New NotImplementedException
     End Function
 
 End Class

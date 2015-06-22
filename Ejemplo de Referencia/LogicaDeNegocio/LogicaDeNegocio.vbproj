@@ -62,15 +62,17 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Confirmar\Entidades\ParametrosAlConfirmarBE.vb" />
-    <Compile Include="Confirmar\DTOs\ErrorNoSePuedeInvocarAEntidadPorParametrosInvalidos.vb" />
-    <Compile Include="Confirmar\DTOs\ErrorTransaccionDebeEstarAutorizadaYNoNotificada.vb" />
-    <Compile Include="Recalendarizar\Entidades\ReintentosBE.vb" />
-    <Compile Include="Recalendarizar\DTOs\MensajeTransaccionFueRecalendarizada.vb" />
-    <Compile Include="Confirmar\DTOs\InstruccionDeConfirmacion.vb" />
-    <Compile Include="Confirmar\DTOs\ParametrosAlConfirmarDTO.vb" />
-    <Compile Include="Confirmar\DTOs\MensajeTransaccionFueConfirmada.vb" />
-    <Compile Include="EstadoTransaccion.vb" />
+    <Compile Include="Confirmar pago\Confirmar\Entidades\ParametrosAlConfirmarBE.vb" />
+    <Compile Include="Confirmar pago\Confirmar\Entradas\SolicitudAlConfirmar.vb" />
+    <Compile Include="Confirmar pago\Confirmar\Salidas\InstruccionDeConfirmacion.vb" />
+    <Compile Include="Confirmar pago\Confirmar\Salidas\MensajesABitacora\ErrorNoSePuedeInvocarAEntidadPorParametrosInvalidos.vb" />
+    <Compile Include="Confirmar pago\Confirmar\Salidas\MensajesABitacora\ErrorPagoDebeEstarAutorizadoYNoNotificado.vb" />
+    <Compile Include="Confirmar pago\Reintentar\Salidas\MensajesABitacora\MensajeConfirmacionDePagoReintentado.vb" />
+    <Compile Include="Confirmar pago\Confirmar\Salidas\MensajesABitacora\MensajePagoFueConfirmado.vb" />
+    <Compile Include="Confirmar pago\Reintentar\Salidas\InstruccionParaReintentar.vb" />
+    <Compile Include="Confirmar pago\Reintentar\Entidades\ReintentosBE.vb" />
+    <Compile Include="Confirmar pago\Confirmar\Entradas\ParametrosAlConfirmar.vb" />
+    <Compile Include="EstadoPago.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -86,10 +88,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Recalendarizar\DTOs\InstruccionParaRecalendarizar.vb" />
-    <Compile Include="Recalendarizar\DTOs\ParametrosAlRecalendarizarDTO.vb" />
-    <Compile Include="Confirmar\Entidades\TransaccionBE.vb" />
-    <Compile Include="Confirmar\DTOs\TransaccionDTO.vb" />
+    <Compile Include="Confirmar pago\Reintentar\Entradas\ParametrosAlReintentar.vb" />
+    <Compile Include="Confirmar pago\Confirmar\Entidades\PagoBE.vb" />
+    <Compile Include="Confirmar pago\Confirmar\Entradas\PagoPorConfirmar.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -110,6 +111,7 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

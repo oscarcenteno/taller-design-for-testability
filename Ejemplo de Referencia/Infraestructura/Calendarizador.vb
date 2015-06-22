@@ -1,9 +1,10 @@
 ﻿Imports LogicaDeAplicacion
+Imports LogicaDeNegocio
 
 Public Class Calendarizador
     Implements ICalendarizadorAlConfirmar
 
-    Public Sub ReCalendarizarConfirmacion(instruccionParaRecalendarizar As LogicaDeNegocio.InstruccionParaRecalendarizar) Implements ICalendarizadorAlConfirmar.Reintentar
+    Public Sub ReCalendarizarConfirmacion(instruccionParaRecalendarizar As InstruccionParaReintentar) Implements ICalendarizadorAlConfirmar.Reintentar
         Console.WriteLine("ReCalendarizarConfirmacion: ")
         Console.WriteLine("| CodigoDeReferencia {0}", instruccionParaRecalendarizar.CodigoDeReferencia)
         Console.WriteLine("| FechaDeInicio: {0}", instruccionParaRecalendarizar.FechaDeInicio)

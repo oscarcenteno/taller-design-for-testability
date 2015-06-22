@@ -3,8 +3,8 @@
 
 Esquema del escenario: Se reintenta hasta tres veces
 
-Dada una transaccion que ha sido intentada <n> veces
-Y se definio un maximo de 3 reintentos por transaccion
+Dada un pago que ha sido intentado <n> veces
+Y se definio un maximo de 3 reintentos por pago
 Cuando no se pudo contactar a la entidad destino
 Entonces se puede "<reintentar>"
 

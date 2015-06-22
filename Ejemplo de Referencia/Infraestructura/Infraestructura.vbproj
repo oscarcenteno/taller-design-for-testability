@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Bitacora.vb" />
     <Compile Include="Calendarizador.vb" />
+    <Compile Include="InvocadorAlConfirmar.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

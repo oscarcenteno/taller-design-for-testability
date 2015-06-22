@@ -1,15 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LogicaDeNegocio", "LogicaDeNegocio\LogicaDeNegocio.vbproj", "{C48F62E1-358D-46B2-9E5A-5AF22EAFA4E4}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LogicaDeNegocio.UnitTests", "LogicaDeNegocio.UnitTests\LogicaDeNegocio.UnitTests.vbproj", "{5F27EEA1-51E3-4E5A-854D-6CDA72E8F8B4}"
-EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Infraestructura.AccesoABaseDeDatos", "Infraestructura.AccesoABaseDeDatos\Infraestructura.AccesoABaseDeDatos.vbproj", "{BFB79C0C-4B64-4B99-834A-79F7978C3089}"
-EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Infraestructura.ComunicacionConEntidades", "Infraestructura.ComunicacionConEntidades\Infraestructura.ComunicacionConEntidades.vbproj", "{B4506B10-5926-4989-A6CF-4D652DA9547C}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Infraestructura", "Infraestructura\Infraestructura.vbproj", "{C6710D3B-E429-4173-BB97-171B857EC105}"
 EndProject
@@ -28,8 +24,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infraestructura", "Infraest
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Especificaciones", "Especificaciones\Especificaciones.vbproj", "{11A86F81-E3EE-4EB1-A164-77EC0E081884}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "LogicaDeAplicacion.UnitTests", "LogicaDeAplicacion.UnitTests\LogicaDeAplicacion.UnitTests.vbproj", "{C0B3F657-2903-4867-B4A3-D1A69DE9903B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Diagramas de Colaboracion", "Diagramas de Colaboracion", "{5A6F6BDE-DE11-49CB-8B0A-967FA0458BB6}"
 	ProjectSection(SolutionItems) = preProject
 		Diagramas de Colaboracion\Caso basico al confirmar un pago.pdf = Diagramas de Colaboracion\Caso basico al confirmar un pago.pdf
@@ -46,6 +40,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ejemplos iniciales", "Ejemp
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "EspecificacionesTecnicas", "EspecificacionesTecnicas\EspecificacionesTecnicas.vbproj", "{C0B3F657-2903-4867-B4A3-D1A69DE9903B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,18 +52,10 @@ Global
 		{C48F62E1-358D-46B2-9E5A-5AF22EAFA4E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C48F62E1-358D-46B2-9E5A-5AF22EAFA4E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C48F62E1-358D-46B2-9E5A-5AF22EAFA4E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5F27EEA1-51E3-4E5A-854D-6CDA72E8F8B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F27EEA1-51E3-4E5A-854D-6CDA72E8F8B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F27EEA1-51E3-4E5A-854D-6CDA72E8F8B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F27EEA1-51E3-4E5A-854D-6CDA72E8F8B4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BFB79C0C-4B64-4B99-834A-79F7978C3089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BFB79C0C-4B64-4B99-834A-79F7978C3089}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFB79C0C-4B64-4B99-834A-79F7978C3089}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFB79C0C-4B64-4B99-834A-79F7978C3089}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B4506B10-5926-4989-A6CF-4D652DA9547C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B4506B10-5926-4989-A6CF-4D652DA9547C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B4506B10-5926-4989-A6CF-4D652DA9547C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B4506B10-5926-4989-A6CF-4D652DA9547C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C6710D3B-E429-4173-BB97-171B857EC105}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C6710D3B-E429-4173-BB97-171B857EC105}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6710D3B-E429-4173-BB97-171B857EC105}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -89,12 +77,9 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{C48F62E1-358D-46B2-9E5A-5AF22EAFA4E4} = {07597C78-01B3-4D9E-BD81-0AE3E7646F9A}
-		{5F27EEA1-51E3-4E5A-854D-6CDA72E8F8B4} = {07597C78-01B3-4D9E-BD81-0AE3E7646F9A}
-		{BFB79C0C-4B64-4B99-834A-79F7978C3089} = {CFDEB72F-DAEF-444A-B811-27B5D8609D89}
-		{B4506B10-5926-4989-A6CF-4D652DA9547C} = {CFDEB72F-DAEF-444A-B811-27B5D8609D89}
-		{C6710D3B-E429-4173-BB97-171B857EC105} = {CFDEB72F-DAEF-444A-B811-27B5D8609D89}
 		{84BD8CDD-B256-40CA-801B-CD95186CB995} = {07597C78-01B3-4D9E-BD81-0AE3E7646F9A}
-		{C0B3F657-2903-4867-B4A3-D1A69DE9903B} = {07597C78-01B3-4D9E-BD81-0AE3E7646F9A}
+		{C48F62E1-358D-46B2-9E5A-5AF22EAFA4E4} = {07597C78-01B3-4D9E-BD81-0AE3E7646F9A}
+		{C6710D3B-E429-4173-BB97-171B857EC105} = {CFDEB72F-DAEF-444A-B811-27B5D8609D89}
+		{BFB79C0C-4B64-4B99-834A-79F7978C3089} = {CFDEB72F-DAEF-444A-B811-27B5D8609D89}
 	EndGlobalSection
 EndGlobal

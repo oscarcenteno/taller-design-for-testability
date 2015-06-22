@@ -66,10 +66,10 @@ Namespace Especificaciones.ConfirmarPago
 Me.ScenarioSetup(scenarioInfo)
 #End ExternalSource
 #ExternalSource("Reintentar una confirmacion.feature",6)
-testRunner.Given(String.Format("una transaccion que ha sido intentada {0} veces", n), CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Dada ")
+testRunner.Given(String.Format("un pago que ha sido intentado {0} veces", n), CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Dada ")
 #End ExternalSource
 #ExternalSource("Reintentar una confirmacion.feature",7)
-testRunner.And("se definio un maximo de 3 reintentos por transaccion", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Y ")
+testRunner.And("se definio un maximo de 3 reintentos por pago", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Y ")
 #End ExternalSource
 #ExternalSource("Reintentar una confirmacion.feature",8)
 testRunner.When("no se pudo contactar a la entidad destino", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Cuando ")
