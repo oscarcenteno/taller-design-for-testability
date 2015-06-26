@@ -2,9 +2,9 @@
 Imports LogicaDeNegocio
 
 Public Class InvocadorAlConfirmar
-    Implements IInvocadorAlConfirmar
+    Implements IInvocador
 
-    Public Function InvocarParaConfirmar(instruccionDeConfirmacion As InstruccionDeConfirmacion) As RespuestaAlInvocarEntidad Implements IInvocadorAlConfirmar.InvocarParaConfirmar
+    Public Function InvocarParaConfirmar(instruccionDeConfirmacion As InstruccionDeConfirmacion) As RespuestaAlInvocarEntidad Implements IInvocador.InvocarParaConfirmar
         Throw New NotImplementedException
     End Function
 End Class

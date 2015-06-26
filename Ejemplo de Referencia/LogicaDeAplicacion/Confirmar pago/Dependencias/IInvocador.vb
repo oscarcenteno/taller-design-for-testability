@@ -1,6 +1,6 @@
 ﻿Imports LogicaDeNegocio
 
-Public Interface IInvocadorAlConfirmar
+Public Interface IInvocador
 
     Function InvocarParaConfirmar(instruccionDeConfirmacion As InstruccionDeConfirmacion) As RespuestaAlInvocarEntidad
 

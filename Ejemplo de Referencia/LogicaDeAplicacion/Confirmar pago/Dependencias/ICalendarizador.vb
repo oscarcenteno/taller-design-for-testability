@@ -1,6 +1,6 @@
 ﻿Imports LogicaDeNegocio
 
-Public Interface ICalendarizadorAlConfirmar
+Public Interface ICalendarizador
 
     Sub Reintentar(instruccion As InstruccionParaReintentar)
 

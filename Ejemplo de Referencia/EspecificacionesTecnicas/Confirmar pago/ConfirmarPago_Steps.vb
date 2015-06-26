@@ -14,18 +14,18 @@ Public Class ConfirmarPago_Steps
 
     ' dependencias
     Friend _repo As IRepositorioAlConfirmar
-    Friend _bita As IBitacoraAlConfirmar
-    Friend _cale As ICalendarizadorAlConfirmar
-    Friend _invo As IInvocadorAlConfirmar
+    Friend _bita As IBitacora
+    Friend _cale As ICalendarizador
+    Friend _invo As IInvocador
 
     ' datos del escenario
-    Friend _pagoConfirmado As PagoPorConfirmar
+    Friend _pagoConfirmado As PagoConfirmado
 
     Public Sub New()
         _repo = A.Fake(Of IRepositorioAlConfirmar)()
-        _bita = A.Fake(Of IBitacoraAlConfirmar)()
-        _cale = A.Fake(Of ICalendarizadorAlConfirmar)()
-        _invo = A.Fake(Of IInvocadorAlConfirmar)()
+        _bita = A.Fake(Of IBitacora)()
+        _cale = A.Fake(Of ICalendarizador)()
+        _invo = A.Fake(Of IInvocador)()
     End Sub
 
     <TechTalk.SpecFlow.Given("un pago")> _
@@ -55,45 +55,29 @@ Public Class ConfirmarPago_Steps
     End Sub
 
     <TechTalk.SpecFlow.Then("se actualizara la informacion del pago en la base de datos")> _
-    Public Sub EntoncesSeActualizaLaInformacionDelPagoEnLaBaseDeDatos(ByVal pagoConfirmado As PagoPorConfirmar)
+    Public Sub EntoncesSeActualizaLaInformacionDelPagoEnLaBaseDeDatos(ByVal pagoConfirmado As PagoConfirmado)
         _pagoConfirmado = pagoConfirmado
     End Sub
 
-    <TechTalk.SpecFlow.Then("se escribirá en bitacora que el pago fue confirmado")> _
-    Public Sub SeEscribiraEnBitacoraQueElPagoFueConfirmado()
+    <TechTalk.SpecFlow.Then("se escribirá en bitacora ""(.*)""")> _
+    Public Sub EntoncesSeEscribiraEnBitacora(ByVal elMensajeEsperado As String)
+
         ' HACK La invocacion al SUT se realiza en el ultimo paso del escenario ya que es ahi donde se ha establecido todos los datos requeridos
         ' Esto es solamente en los casos en donde se utiliza Fakes.
         A.CallTo(Function() _repo.ObtenerPagoPorConfirmar(_pagoConfirmado.CodigoDeReferencia)).Returns(_elPago)
-        A.CallTo(Function() _repo.ObtenerParametros(_elPago)).Returns(_parametrosDeEntidad)
+        A.CallTo(Function() _repo.ObtenerParametrosParInvocarEntidad(_elPago.CodigoDeEntidadDestino)).Returns(_parametrosDeEntidad)
         A.CallTo(Function() _invo.InvocarParaConfirmar(_instruccionDeConfirmacion)).Returns(_respuestaFueExitosa)
 
-        ' sut
         Dim app As New CoordinadorAlConfirmar(_bita, _repo, _invo, _cale)
         app.Confirmar(_laSolicitud)
 
         ' verificaciones
         A.CallTo(Sub() _repo.ActualizarPagoConfirmado(_pagoConfirmado)).MustHaveHappened()
-        Dim mensajeEsperado As New MensajePagoFueConfirmado(_elPago)
-        A.CallTo(Sub() _bita.EscribirPagoFueConfirmado(mensajeEsperado)).MustHaveHappened()
+        A.CallTo(Sub() _bita.EscribirMensajeInformativo(elMensajeEsperado)).MustHaveHappened()
     End Sub
 
 #End Region
 
-#Region "Solo se confirmara pagos autorizados"
-
-    <TechTalk.SpecFlow.Then("se registra en bitacora que solo se confirma pagos autorizados y no notificados")> _
-    Public Sub EntoncesSeRegistraEnBitacoraQueSoloSeConfirmaPagosAutorizadosYNoNotificados()
-        A.CallTo(Function() _repo.ObtenerPagoPorConfirmar(_elPago.CodigoDeReferencia)).Returns(_elPago)
-        ' sut
-        Dim app As New CoordinadorAlConfirmar(_bita, _repo, _invo, Nothing)
-        app.Confirmar(_laSolicitud)
-
-        ' verificar resultados
-        Dim mensajeEsperado As New ErrorPagoDebeEstarAutorizadoYNoNotificado(_elPago)
-        A.CallTo(Sub() _bita.EscribirErrorAlConfirmar(mensajeEsperado)).MustHaveHappened()
-    End Sub
-
-#End Region
 
 #Region "Se reintentará si no hay comunicación con la entidad destino"
 
@@ -118,10 +102,23 @@ Public Class ConfirmarPago_Steps
         _laInstruccionParaReintentar = laInstruccion
     End Sub
 
-    <TechTalk.SpecFlow.Then("se registra la recalendarizacion en la bitacora")> _
-    Public Sub EntoncesSeRegistraLaRecalendarizacionEnLaBitacora()
+#End Region
+
+    <TechTalk.SpecFlow.Then("se registra en bitacora que solo se confirma pagos autorizados y no notificados ""(.*)""")> _
+    Public Sub EntoncesSeRegistraEnBitacoraQueSoloSeConfirmaPagosAutorizadosYNoNotificados(ByVal mensajeEsperado As String)
+        A.CallTo(Function() _repo.ObtenerPagoPorConfirmar(_elPago.CodigoDeReferencia)).Returns(_elPago)
+        ' sut
+        Dim app As New CoordinadorAlConfirmar(_bita, _repo, _invo, Nothing)
+        app.Confirmar(_laSolicitud)
+
+        ' verificar resultados
+        A.CallTo(Sub() _bita.EscribirError(mensajeEsperado)).MustHaveHappened()
+    End Sub
+
+    <TechTalk.SpecFlow.Then("se registra la recalendarizacion en la bitacora ""(.*)""")> _
+    Public Sub EntoncesSeRegistraLaRecalendarizacionEnLaBitacora(ByVal mensajeEsperado As String)
         A.CallTo(Function() _repo.ObtenerPagoPorConfirmar(_laSolicitud.CodigoDeReferencia)).Returns(_elPago)
-        A.CallTo(Function() _repo.ObtenerParametros(_elPago)).Returns(_parametrosDeEntidad)
+        A.CallTo(Function() _repo.ObtenerParametrosParInvocarEntidad(_elPago.CodigoDeEntidadDestino)).Returns(_parametrosDeEntidad)
         A.CallTo(Function() _invo.InvocarParaConfirmar(_instruccionDeConfirmacion)).Returns(_respuestaNoFueExitosa)
         A.CallTo(Function() _repo.ObtenerParametrosParaReintentar()).Returns(_parametrosAlRecalendarizar)
 
@@ -131,68 +128,13 @@ Public Class ConfirmarPago_Steps
 
         ' verificaciones
         A.CallTo(Sub() _cale.Reintentar(_laInstruccionParaReintentar)).MustHaveHappened()
-        Dim mensajeEsperado As New MensajeConfirmacionDePagoReintentado(_laInstruccionParaReintentar)
-        A.CallTo(Sub() _bita.EscribirConfirmacionDePagoReintentado(mensajeEsperado)).MustHaveHappened()
+        A.CallTo(Sub() _bita.EscribirMensajeInformativo(mensajeEsperado)).MustHaveHappened()
     End Sub
 
-    <TechTalk.SpecFlow.Then("se registra en bitacora que no se puede invocar a la entidad por motivo de parametros invalidos")> _
-    Public Sub EntoncesSeRegistraEnBitacoraQueNoSePuedeInvocarALaEntidadPorMotivoDeParametrosInvalidos()
-        A.CallTo(Function() _repo.ObtenerPagoPorConfirmar(_laSolicitud.CodigoDeReferencia)).Returns(_elPago)
-        A.CallTo(Function() _repo.ObtenerParametros(_elPago)).Returns(_parametrosDeEntidad)
+    <TechTalk.SpecFlow.Then("se escribirá el error de parametros en bitacora ""(.*)""")> _
+    Public Sub EntoncesSeEscribiraElErrorDeParametrosEnBitacora(ByVal mensajeEsperado As String)
 
-        ' sut
-        Dim app As New CoordinadorAlConfirmar(_bita, _repo, _invo, _cale)
-        app.Confirmar(_laSolicitud)
-
-        ' verificaciones
-        Dim mensajeEsperado As New ErrorNoSePuedeInvocarAEntidadPorParametrosInvalidos(_elPago)
-        A.CallTo(Sub() _bita.EscribirErrorNoSePuedeInvocarAEntidad(mensajeEsperado)).MustHaveHappened()
     End Sub
-
-
-#End Region
-
-#Region "Mensajes de bitacora"
-
-    Private _fechaDeCalendarizacion As Date
-    Private _mensajeObtenido As String
-
-    <TechTalk.SpecFlow.Given("la fecha de calendarizacion es ""(.*)""")> _
-    Public Sub DadoLaFechaDeCalendarizacionEs(ByVal fechaDeCalendarizacion As Date)
-        _fechaDeCalendarizacion = fechaDeCalendarizacion
-    End Sub
-
-    <TechTalk.SpecFlow.When("se confirma")> _
-    Public Sub CuandoSeConfirma()
-        _mensajeObtenido = New MensajePagoFueConfirmado(_elPago).ToString
-    End Sub
-
-    <TechTalk.SpecFlow.When("se intenta confirmar pero no es permitido")> _
-    Public Sub CuandoSeIntentaConfirmarPeroNoEsPermitido()
-        _mensajeObtenido = New ErrorPagoDebeEstarAutorizadoYNoNotificado(_elPago).ToString
-    End Sub
-
-    <TechTalk.SpecFlow.When("no se tiene los parametros necesarios para invocar a la entidad")> _
-    Public Sub CuandoNoSeTieneLosParametrosNecesariosParaInvocarALaEntidad()
-        _mensajeObtenido = New ErrorNoSePuedeInvocarAEntidadPorParametrosInvalidos(_elPago).ToString
-    End Sub
-
-    <TechTalk.SpecFlow.Given("un reintento de confirmacion")> _
-    Public Sub DadoUnReintentoDeConfirmacion(ByVal laInstruccionParaReintentar As InstruccionParaReintentar)
-        _laInstruccionParaReintentar = laInstruccionParaReintentar
-    End Sub
-
-    <TechTalk.SpecFlow.When("se registra en bitacora")> _
-    Public Sub CuandoSeRegistraEnBitacora()
-        _mensajeObtenido = New MensajeConfirmacionDePagoReintentado(_laInstruccionParaReintentar).ToString()
-    End Sub
-
-    <TechTalk.SpecFlow.Then("este será el mensaje ""(.*)""")> _
-    Public Sub EntoncesEsteSeraElMensaje(ByVal mensajeEsperado As String)
-        Assert.AreEqual(mensajeEsperado, _mensajeObtenido)
-    End Sub
-
-#End Region
 
 End Class
 

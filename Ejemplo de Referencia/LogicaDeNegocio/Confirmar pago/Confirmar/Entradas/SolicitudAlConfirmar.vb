@@ -1,4 +1,4 @@
-﻿Public Structure SolicitudAlConfirmar
+﻿Public Class SolicitudAlConfirmar
     Public Property CodigoDeReferencia As String
     Public Property IntentosYaRealizados As Integer
     Public Property FechaYHoraActual As Date
@@ -9,4 +9,4 @@
         Me.FechaYHoraActual = FechaYHoraActual
     End Sub
 
-End Structure
+End Class

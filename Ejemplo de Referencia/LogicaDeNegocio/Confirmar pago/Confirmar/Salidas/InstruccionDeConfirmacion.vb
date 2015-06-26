@@ -1,6 +1,7 @@
 ﻿Imports LogicaDeNegocio
 
-Public Structure InstruccionDeConfirmacion
+Public Class InstruccionDeConfirmacion
+    Implements IEquatable(Of InstruccionDeConfirmacion)
 
     Public Property CodigoDeReferencia As String
     Public Property CodigoDeEntidadDestino As String
@@ -9,14 +10,8 @@ Public Structure InstruccionDeConfirmacion
     Public Property TimeOut As Integer
     Public Property Cn As String
 
-    Public Sub New(CodigoDeReferencia As String, CodigoDeEntidadDestino As String,
-                   FechaDeConfirmacion As Date, Url As String, TimeOut As Integer, Cn As String)
-        Me.CodigoDeReferencia = CodigoDeReferencia
-        Me.CodigoDeEntidadDestino = CodigoDeEntidadDestino
-        Me.FechaDeConfirmacion = FechaDeConfirmacion
-        Me.Url = Url
-        Me.TimeOut = TimeOut
-        Me.Cn = Cn
+    Public Sub New()
+        MyBase.New()
     End Sub
 
     Public Sub New(dto As PagoPorConfirmar, parametros As ParametrosAlConfirmar, laFechaDeConfirmacion As Date)
@@ -28,4 +23,27 @@ Public Structure InstruccionDeConfirmacion
         FechaDeConfirmacion = laFechaDeConfirmacion
     End Sub
 
-End Structure
+    Public Overloads Function Equals(other As InstruccionDeConfirmacion) _
+        As Boolean Implements IEquatable(Of InstruccionDeConfirmacion).Equals
+
+        Dim respuesta As Boolean = False
+
+        If other IsNot Nothing Then
+            Dim eqCodReferencia = CodigoDeReferencia.Equals(other.CodigoDeReferencia)
+            Dim eqCodEntidadDestino = CodigoDeEntidadDestino.Equals(other.CodigoDeEntidadDestino)
+            Dim eqUrl = Url.Equals(other.Url)
+            Dim eqTimeOut = TimeOut.Equals(other.TimeOut)
+            Dim eqCn = Cn.Equals(other.Cn)
+            Dim eqFecha = FechaDeConfirmacion.Equals(other.FechaDeConfirmacion)
+            respuesta = eqCodReferencia And eqCodEntidadDestino And _
+                eqUrl And eqTimeOut And eqCn And eqFecha
+        End If
+
+        Return respuesta
+    End Function
+
+    Public Overrides Function Equals(obj As Object) As Boolean
+        Return Me.Equals(CType(obj, InstruccionDeConfirmacion))
+    End Function
+
+End Class

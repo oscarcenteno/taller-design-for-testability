@@ -105,19 +105,15 @@ testRunner.Then("se generara esta confirmacion a la entidad destino", CType(Noth
 #End ExternalSource
             Dim table5 As TechTalk.SpecFlow.Table = New TechTalk.SpecFlow.Table(New String() {"Propiedad", "Valor"})
             table5.AddRow(New String() {"Codigo de Referencia", "Ref1"})
-            table5.AddRow(New String() {"Estado", "Autorizado"})
             table5.AddRow(New String() {"Se ha notificado", "True"})
-            table5.AddRow(New String() {"Codigo de Entidad Origen", "401"})
-            table5.AddRow(New String() {"Codigo de Entidad Destino", "501"})
-            table5.AddRow(New String() {"Numero de Telefono Destino", "60607070"})
-            table5.AddRow(New String() {"Codigo de Moneda Destino", "1"})
-            table5.AddRow(New String() {"Fecha Valor", "2015-06-01 11:59 AM"})
             table5.AddRow(New String() {"Fecha de Confirmacion", "2015-06-01 12:00 PM"})
 #ExternalSource("Caso basico al confirmar un pago.feature",37)
 testRunner.And("se actualizara la informacion del pago en la base de datos", CType(Nothing,String), table5, "Y ")
 #End ExternalSource
-#ExternalSource("Caso basico al confirmar un pago.feature",49)
-testRunner.And("se escribirá en bitacora que el pago fue confirmado", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Y ")
+#ExternalSource("Caso basico al confirmar un pago.feature",43)
+testRunner.And("se escribirá en bitacora ""Se confirmó el pago con referencia [Ref1] de la entidad"& _ 
+                    " origen [401], en moneda [1] hacia el teléfono [60607070] asociado a la entidad "& _ 
+                    "destino [501]""", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Y ")
 #End ExternalSource
             Me.ScenarioCleanup
         End Sub

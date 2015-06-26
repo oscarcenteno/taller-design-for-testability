@@ -96,11 +96,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Casos alternos al confirmar un pago.feature</DependentUpon>
     </Compile>
-    <Compile Include="Confirmar pago\Mensajes en bitacora al confirmar un pago.feature.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Mensajes en bitacora al confirmar un pago.feature</DependentUpon>
-    </Compile>
     <Compile Include="Confirmar pago\ConfirmarPago_Steps.vb" />
     <Compile Include="ConversionesDeParametros.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -136,10 +131,6 @@
     <None Include="Confirmar pago\Casos alternos al confirmar un pago.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Casos alternos al confirmar un pago.feature.vb</LastGenOutput>
-    </None>
-    <None Include="Confirmar pago\Mensajes en bitacora al confirmar un pago.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Mensajes en bitacora al confirmar un pago.feature.vb</LastGenOutput>
     </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>

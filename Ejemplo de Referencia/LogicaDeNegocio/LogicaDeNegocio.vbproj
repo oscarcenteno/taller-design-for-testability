@@ -65,10 +65,8 @@
     <Compile Include="Confirmar pago\Confirmar\Entidades\ParametrosAlConfirmarBE.vb" />
     <Compile Include="Confirmar pago\Confirmar\Entradas\SolicitudAlConfirmar.vb" />
     <Compile Include="Confirmar pago\Confirmar\Salidas\InstruccionDeConfirmacion.vb" />
-    <Compile Include="Confirmar pago\Confirmar\Salidas\MensajesABitacora\ErrorNoSePuedeInvocarAEntidadPorParametrosInvalidos.vb" />
-    <Compile Include="Confirmar pago\Confirmar\Salidas\MensajesABitacora\ErrorPagoDebeEstarAutorizadoYNoNotificado.vb" />
-    <Compile Include="Confirmar pago\Reintentar\Salidas\MensajesABitacora\MensajeConfirmacionDePagoReintentado.vb" />
-    <Compile Include="Confirmar pago\Confirmar\Salidas\MensajesABitacora\MensajePagoFueConfirmado.vb" />
+    <Compile Include="Confirmar pago\Confirmar\Salidas\PagoConfirmado.vb" />
+    <Compile Include="Confirmar pago\MensajesABitacora.vb" />
     <Compile Include="Confirmar pago\Reintentar\Salidas\InstruccionParaReintentar.vb" />
     <Compile Include="Confirmar pago\Reintentar\Entidades\ReintentosBE.vb" />
     <Compile Include="Confirmar pago\Confirmar\Entradas\ParametrosAlConfirmar.vb" />

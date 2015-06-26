@@ -26,10 +26,9 @@
 
 #End Region
 
-    Function MarcarPagoComoConfirmado(fechaDeConfirmacion As Date) As PagoPorConfirmar
-        _estadoInterno.FechaDeConfirmacion = fechaDeConfirmacion
-        _estadoInterno.SeHaNotificado = True
-        Return _estadoInterno
+    Function ObtenerDatosParaPagoConfirmado(fechaDeConfirmacion As Date) As PagoConfirmado
+        Dim respuesta As New PagoConfirmado(Me._estadoInterno.CodigoDeReferencia, fechaDeConfirmacion)
+        Return respuesta
     End Function
 
 End Class

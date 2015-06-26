@@ -11,7 +11,8 @@ Public Class ConfirmarUnPagoSteps
 
     <TechTalk.SpecFlow.Given("un pago en estado ""(.*)"" y ""(.*)""")> _
     Public Sub DadoUnPagoEnEstadoY(ByVal estado As EstadoPago, seHaNotificado As Booleano)
-        _miPago = New PagoBE(New PagoPorConfirmar With {.Estado = estado, .SeHaNotificado = seHaNotificado})
+        ' TODO: Mejorar esta linea
+        _miPago = New PagoBE(New PagoPorConfirmar(String.Empty, String.Empty, String.Empty, String.Empty, String.Empty, estado, New Date, New Date, seHaNotificado))
     End Sub
 
     <TechTalk.SpecFlow.When("se solicita confirmar")> _

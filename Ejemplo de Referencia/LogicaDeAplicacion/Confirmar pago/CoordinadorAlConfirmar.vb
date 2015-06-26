@@ -3,15 +3,15 @@ Imports System.Diagnostics.Contracts
 
 Public Class CoordinadorAlConfirmar
 
-    Private _laBitacora As IBitacoraAlConfirmar
+    Private _laBitacora As IBitacora
     Private _elRepositorio As IRepositorioAlConfirmar
-    Private _elInvocadorDeEntidad As IInvocadorAlConfirmar
-    Private _elCalendarizador As ICalendarizadorAlConfirmar
+    Private _elInvocadorDeEntidad As IInvocador
+    Private _elCalendarizador As ICalendarizador
 
-    Public Sub New(laBitacora As IBitacoraAlConfirmar,
+    Public Sub New(laBitacora As IBitacora,
                    elRepositorio As IRepositorioAlConfirmar,
-                  elInvocadorDeEntidad As IInvocadorAlConfirmar,
-                  elCalendarizador As ICalendarizadorAlConfirmar
+                  elInvocadorDeEntidad As IInvocador,
+                  elCalendarizador As ICalendarizador
                   )
         _laBitacora = laBitacora
         _elRepositorio = elRepositorio
@@ -21,11 +21,11 @@ Public Class CoordinadorAlConfirmar
 
     Public Sub Confirmar(solicitud As SolicitudAlConfirmar)
 
-        Dim miTransaccionDTO As PagoPorConfirmar = _elRepositorio.ObtenerPagoPorConfirmar(solicitud.CodigoDeReferencia)
+        Dim miPagoPorConfirmar As PagoPorConfirmar = _elRepositorio.ObtenerPagoPorConfirmar(solicitud.CodigoDeReferencia)
 
         ' Valida reglas de negocio
-        Dim miTransaccionBE As New PagoBE(miTransaccionDTO)
-        Dim sePuedeConfirmar As Boolean = miTransaccionBE.SePuedeConfirmar()
+        Dim miPagoBE As New PagoBE(miPagoPorConfirmar)
+        Dim sePuedeConfirmar As Boolean = miPagoBE.SePuedeConfirmar()
 
         ' Datos para tomar decisiones
         Dim misParametrosDTO As ParametrosAlConfirmar = Nothing
@@ -34,33 +34,33 @@ Public Class CoordinadorAlConfirmar
 
         If sePuedeConfirmar Then
             ' Obtiene y valida parametros
-            misParametrosDTO = _elRepositorio.ObtenerParametros(miTransaccionDTO)
+            misParametrosDTO = _elRepositorio.ObtenerParametrosParInvocarEntidad(miPagoPorConfirmar.CodigoDeEntidadDestino)
             misParametrosBE = New ParametrosAlConfirmarBE(misParametrosDTO)
             sePuedeInvocarAEntidad = misParametrosBE.SePuedeInvocarAEntidad()
         Else
-            Dim mensaje As New ErrorPagoDebeEstarAutorizadoYNoNotificado(miTransaccionDTO)
-            _laBitacora.EscribirErrorAlConfirmar(mensaje)
+            Dim mensaje = MensajesABitacora.ObtenerErrorPagoDebeEstarAutorizadoYNoNotificado(miPagoPorConfirmar)
+            _laBitacora.EscribirError(mensaje)
         End If
 
         Dim comunicacionFueExitosa As Boolean = False
-        Dim miTransaccionDTOConfirmada As PagoPorConfirmar = Nothing
 
         If sePuedeInvocarAEntidad Then
-            miTransaccionDTOConfirmada = miTransaccionBE.MarcarPagoComoConfirmado(solicitud.FechaYHoraActual)
-            Dim laInstruccionDeConfirmacion = New InstruccionDeConfirmacion(miTransaccionDTOConfirmada, misParametrosDTO, solicitud.FechaYHoraActual)
+            Dim laInstruccionDeConfirmacion = New InstruccionDeConfirmacion(miPagoPorConfirmar, misParametrosDTO, solicitud.FechaYHoraActual)
             Dim respuestaAlInvocarEntidad = _elInvocadorDeEntidad.InvocarParaConfirmar(laInstruccionDeConfirmacion)
             comunicacionFueExitosa = respuestaAlInvocarEntidad.ComunicacionFueExitosa
         End If
 
         If sePuedeConfirmar And Not sePuedeInvocarAEntidad Then
-            Dim mensaje As New ErrorNoSePuedeInvocarAEntidadPorParametrosInvalidos(miTransaccionDTO)
-            _laBitacora.EscribirErrorNoSePuedeInvocarAEntidad(mensaje)
+            Dim mensaje = MensajesABitacora.ObtenerErrorNoSePuedeInvocarAEntidadPorParametrosInvalidos(miPagoPorConfirmar)
+            _laBitacora.EscribirError(mensaje)
         End If
 
         If comunicacionFueExitosa Then
-            _elRepositorio.ActualizarPagoConfirmado(miTransaccionDTOConfirmada)
-            Dim mensaje = New MensajePagoFueConfirmado(miTransaccionDTOConfirmada)
-            _laBitacora.EscribirPagoFueConfirmado(mensaje)
+            Dim miPagoConfirmado As PagoConfirmado = Nothing
+            miPagoConfirmado = miPagoBE.ObtenerDatosParaPagoConfirmado(solicitud.FechaYHoraActual)
+            _elRepositorio.ActualizarPagoConfirmado(miPagoConfirmado)
+            Dim mensaje = MensajesABitacora.ObtenerMensajePagoFueConfirmado(miPagoPorConfirmar)
+            _laBitacora.EscribirMensajeInformativo(mensaje)
         End If
 
         Dim seNecesitaReintentar = Not comunicacionFueExitosa And sePuedeConfirmar And sePuedeInvocarAEntidad
@@ -80,8 +80,8 @@ Public Class CoordinadorAlConfirmar
             Dim instruccion = misReintentosBE.ObtenerInstruccionParaReintentar()
             _elCalendarizador.Reintentar(instruccion)
 
-            Dim mensaje As New MensajeConfirmacionDePagoReintentado(instruccion)
-            _laBitacora.EscribirConfirmacionDePagoReintentado(mensaje)
+            Dim mensaje = MensajesABitacora.ObtenerMensajeConfirmacionDePagoReintentado(instruccion)
+            _laBitacora.EscribirMensajeInformativo(mensaje)
         End If
 
     End Sub

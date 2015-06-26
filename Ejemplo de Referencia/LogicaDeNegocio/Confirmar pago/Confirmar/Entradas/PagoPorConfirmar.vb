@@ -1,4 +1,4 @@
-﻿Public Structure PagoPorConfirmar
+﻿Public Class PagoPorConfirmar
 
     Public Property CodigoDeReferencia As String
     Public Property CodigoDeEntidadDestino As String
@@ -27,4 +27,4 @@
 
     End Sub
 
-End Structure
+End Class

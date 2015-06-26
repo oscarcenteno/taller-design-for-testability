@@ -37,13 +37,7 @@ Entonces se generara esta confirmacion a la entidad destino
 Y se actualizara la informacion del pago en la base de datos
 | Propiedad                  | Valor               |
 | Codigo de Referencia       | Ref1                |
-| Estado                     | Autorizado          |
 | Se ha notificado           | True                |
-| Codigo de Entidad Origen   | 401                 |
-| Codigo de Entidad Destino  | 501                 |
-| Numero de Telefono Destino | 60607070            |
-| Codigo de Moneda Destino   | 1                   |
-| Fecha Valor                | 2015-06-01 11:59 AM |
 | Fecha de Confirmacion      | 2015-06-01 12:00 PM |
 
-Y se escribirá en bitacora que el pago fue confirmado
+Y se escribirá en bitacora "Se confirmó el pago con referencia [Ref1] de la entidad origen [401], en moneda [1] hacia el teléfono [60607070] asociado a la entidad destino [501]"

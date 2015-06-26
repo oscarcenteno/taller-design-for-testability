@@ -4,8 +4,7 @@ Imports LogicaDeNegocio
 <Binding()> _
 Public Class ReintentarUnaConfirmacionSteps
 
-    Private _unPago As New PagoPorConfirmar
-    Private _losParametros As New ParametrosAlReintentar
+    Private _losParametros As ParametrosAlReintentar
     Private _logicaReintentos As ReintentosBE = Nothing
     Private _solicitud As SolicitudAlConfirmar
 
@@ -16,7 +15,8 @@ Public Class ReintentarUnaConfirmacionSteps
 
     <TechTalk.SpecFlow.Given("se definio un maximo de (.*) reintentos por pago")> _
     Public Sub DadoSeDefinioUnMaximoDeReintentosPorPago(ByVal maximoDeReintentos As Int32)
-        _losParametros.CantidadMaximaDeIntentos = maximoDeReintentos
+        ' TODO: Mejorar esta linea
+        _losParametros = New ParametrosAlReintentar(maximoDeReintentos, String.Empty)
         _logicaReintentos = New ReintentosBE(_losParametros, _solicitud)
     End Sub
 

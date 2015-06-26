@@ -10,7 +10,7 @@ Dado un pago
 Cuando se solicita confirmar el pago 
 | Propiedad            | Valor |
 | Codigo de referencia | Ref2  |
-Entonces se registra en bitacora que solo se confirma pagos autorizados y no notificados
+Entonces se registra en bitacora que solo se confirma pagos autorizados y no notificados "No se confirmó el pago con Cod. Referencia [Ref2] pues debe estar autorizado y no notificado."
 
 Escenario: Se enviará una sola confirmación a la entidad destino
 
@@ -24,7 +24,7 @@ Cuando se solicita confirmar el pago
 | Propiedad            | Valor |
 | Codigo de Referencia | Ref2  |
 
-Entonces se registra en bitacora que solo se confirma pagos autorizados y no notificados
+Entonces se registra en bitacora que solo se confirma pagos autorizados y no notificados "No se confirmó el pago con Cod. Referencia [Ref2] pues debe estar autorizado y no notificado."
 
 Escenario: Se reintentará si no hay comunicación con la entidad destino
 
@@ -72,7 +72,7 @@ Y se recalendariza de esta manera
 | Codigo de Referencia | Ref1                |
 | Fecha de Inicio      | 2015-06-01 12:05 PM |
 | Numero de Reintento  | 1                   |
-Y se registra la recalendarizacion en la bitacora
+Y se registra la recalendarizacion en la bitacora "Se ha calendarizado el reintento para confirmar #1 para el pago con referencia Ref1 en la fecha/hora 01/06/2015 12:05:00."
 
 Escenario: No se reintentará si no se puede invocar a la entidad por problemas de parámetros
 Dado un pago
@@ -95,4 +95,4 @@ Y estos parametros de confirmacion de la entidad 501
 Cuando se solicita confirmar el pago 
 | Propiedad            | Valor |
 | Codigo de referencia | Ref1  |
-Entonces se registra en bitacora que no se puede invocar a la entidad por motivo de parametros invalidos
+Entonces se escribirá el error de parametros en bitacora "No se confirmó el pago Ref1 pues los parametros requeridos para invocar a la entidad 501 no están configurados"

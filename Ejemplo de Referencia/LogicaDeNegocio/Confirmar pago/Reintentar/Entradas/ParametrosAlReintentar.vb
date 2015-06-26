@@ -1,5 +1,5 @@
 ﻿
-Public Structure ParametrosAlReintentar
+Public Class ParametrosAlReintentar
 
     Public Property CantidadMaximaDeIntentos As Integer
     Public Property IntervaloDeNotificacion As String
@@ -9,4 +9,4 @@ Public Structure ParametrosAlReintentar
         Me.IntervaloDeNotificacion = IntervaloDeNotificacion
     End Sub
 
-End Structure
+End Class

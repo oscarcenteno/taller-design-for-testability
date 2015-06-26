@@ -17,6 +17,11 @@ Public Class ConversionesDeParametros
     End Function
 
     <StepArgumentTransformation()>
+    Public Function TransformeAPagoConfirmado(table As Table) As PagoConfirmado
+        Return table.CreateInstance(Of PagoConfirmado)()
+    End Function
+
+    <StepArgumentTransformation()>
     Public Function TransformeAParametrosAlConfirmarDTO(table As Table) As ParametrosAlConfirmar
         Return table.CreateInstance(Of ParametrosAlConfirmar)()
     End Function

@@ -4,11 +4,11 @@ Imports LogicaDeNegocio
 Public Class BaseDeDatosAlConfirmar
     Implements IRepositorioAlConfirmar
 
-    Public Sub ActualizarPagoConfirmado(datosDeTransaccion As PagoPorConfirmar) Implements IRepositorioAlConfirmar.ActualizarPagoConfirmado
+    Public Sub ActualizarPagoConfirmado(elPago As PagoConfirmado) Implements IRepositorioAlConfirmar.ActualizarPagoConfirmado
         Throw New NotImplementedException
     End Sub
 
-    Public Function ObtenerParametros(datosDeTransaccion As PagoPorConfirmar) As LogicaDeNegocio.ParametrosAlConfirmar Implements IRepositorioAlConfirmar.ObtenerParametros
+    Public Function ObtenerParametrosParInvocarEntidad(codEntidadDestino As Integer) As LogicaDeNegocio.ParametrosAlConfirmar Implements IRepositorioAlConfirmar.ObtenerParametrosParInvocarEntidad
         Throw New NotImplementedException
     End Function
 

@@ -63,10 +63,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Confirmar pago\CoordinadorAlConfirmar.vb" />
-    <Compile Include="Confirmar pago\Dependencias\ICalendarizadorAlConfirmar.vb" />
-    <Compile Include="Confirmar pago\Dependencias\IInvocadorAlConfirmar.vb" />
+    <Compile Include="Confirmar pago\Dependencias\ICalendarizador.vb" />
+    <Compile Include="Confirmar pago\Dependencias\IInvocador.vb" />
     <Compile Include="Confirmar pago\Dependencias\IRepositorioAlConfirmar.vb" />
-    <Compile Include="Confirmar pago\Dependencias\IBitacoraAlConfirmar.vb" />
+    <Compile Include="Confirmar pago\Dependencias\IBitacora.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

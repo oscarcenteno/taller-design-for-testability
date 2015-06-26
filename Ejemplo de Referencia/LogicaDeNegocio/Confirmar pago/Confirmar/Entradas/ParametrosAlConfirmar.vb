@@ -1,4 +1,4 @@
-﻿Public Structure ParametrosAlConfirmar
+﻿Public Class ParametrosAlConfirmar
 
     Public Property Url As String
     Public Property TimeOut As Integer
@@ -10,5 +10,4 @@
         Me.Cn = Cn
     End Sub
 
-
-End Structure
+End Class

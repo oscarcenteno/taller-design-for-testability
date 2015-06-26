@@ -79,7 +79,9 @@ testRunner.Given("un pago", CType(Nothing,String), table1, "Dado ")
 testRunner.When("se solicita confirmar el pago", CType(Nothing,String), table2, "Cuando ")
 #End ExternalSource
 #ExternalSource("Casos alternos al confirmar un pago.feature",13)
-testRunner.Then("se registra en bitacora que solo se confirma pagos autorizados y no notificados", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Entonces ")
+testRunner.Then("se registra en bitacora que solo se confirma pagos autorizados y no notificados """& _ 
+                    "No se confirmó el pago con Cod. Referencia [Ref2] pues debe estar autorizado y n"& _ 
+                    "o notificado.""", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Entonces ")
 #End ExternalSource
             Me.ScenarioCleanup
         End Sub
@@ -105,7 +107,9 @@ testRunner.Given("un pago", CType(Nothing,String), table3, "Dado ")
 testRunner.When("se solicita confirmar el pago", CType(Nothing,String), table4, "Cuando ")
 #End ExternalSource
 #ExternalSource("Casos alternos al confirmar un pago.feature",27)
-testRunner.Then("se registra en bitacora que solo se confirma pagos autorizados y no notificados", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Entonces ")
+testRunner.Then("se registra en bitacora que solo se confirma pagos autorizados y no notificados """& _ 
+                    "No se confirmó el pago con Cod. Referencia [Ref2] pues debe estar autorizado y n"& _ 
+                    "o notificado.""", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Entonces ")
 #End ExternalSource
             Me.ScenarioCleanup
         End Sub
@@ -171,7 +175,9 @@ testRunner.Then("se generara esta confirmacion a la entidad destino", CType(Noth
 testRunner.And("se recalendariza de esta manera", CType(Nothing,String), table10, "Y ")
 #End ExternalSource
 #ExternalSource("Casos alternos al confirmar un pago.feature",75)
-testRunner.And("se registra la recalendarizacion en la bitacora", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Y ")
+testRunner.And("se registra la recalendarizacion en la bitacora ""Se ha calendarizado el reintento"& _ 
+                    " para confirmar #1 para el pago con referencia Ref1 en la fecha/hora 01/06/2015 "& _ 
+                    "12:05:00.""", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Y ")
 #End ExternalSource
             Me.ScenarioCleanup
         End Sub
@@ -211,8 +217,8 @@ testRunner.And("estos parametros de confirmacion de la entidad 501", CType(Nothi
 testRunner.When("se solicita confirmar el pago", CType(Nothing,String), table13, "Cuando ")
 #End ExternalSource
 #ExternalSource("Casos alternos al confirmar un pago.feature",98)
-testRunner.Then("se registra en bitacora que no se puede invocar a la entidad por motivo de parame"& _ 
-                    "tros invalidos", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Entonces ")
+testRunner.Then("se escribirá el error de parametros en bitacora ""No se confirmó el pago Ref1 pues"& _ 
+                    " los parametros requeridos para invocar a la entidad 501 no están configurados""", CType(Nothing,String), CType(Nothing,TechTalk.SpecFlow.Table), "Entonces ")
 #End ExternalSource
             Me.ScenarioCleanup
         End Sub
